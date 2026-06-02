@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=1280">
 <title>꿈씨라운지 | 2026 시민 아이디어 공모전</title>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700;800&display=swap" rel="stylesheet">
+<!-- config.js 는 .gitignore 에 포함 — 절대 깃허브에 커밋하지 마세요 -->
+<script src="config.js"></script>
 <style>
 @font-face {
   font-family: 'Jalnan2';
@@ -3314,8 +3316,11 @@ document.getElementById('faqModal').addEventListener('click', function(e) {
 /* ─────────────────────────────
    문의하기 모달
 ───────────────────────────── */
-const CONTACT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwR_3GWfWuGN2l5QDh2DN3Rs-fuSjfgQaXq-cER9kV_OubdI51LlQSO_JceSo93Nd-A/exec';
-const ADMIN_PASSWORD = '';
+// ⚠️  실제 URL·비밀번호는 config.js 에서만 관리하세요.
+//     config.js 는 .gitignore 에 포함되어 있어 깃허브에 올라가지 않습니다.
+//     배포 시 config.js 를 서버에만 직접 업로드하세요.
+const CONTACT_SCRIPT_URL = (typeof APP_CONFIG !== 'undefined') ? APP_CONFIG.scriptUrl : '';
+const ADMIN_PASSWORD      = (typeof APP_CONFIG !== 'undefined') ? APP_CONFIG.adminPassword : '';
 
 function openContactModal() {
   document.getElementById('contactModal').classList.add('active');
@@ -3403,11 +3408,12 @@ async function searchInquiry() {
 
   if (!name || !pw) { errEl.textContent = '이름과 비밀번호를 모두 입력해 주세요.'; errEl.classList.add('show'); return; }
 
-  const isAdmin = (pw === ADMIN_PASSWORD);
-  const pwHash  = btoa(pw + '_djto2026');
+  // 관리자 여부는 서버(Apps Script)에서 검증합니다.
+  // 클라이언트에서는 isAdmin 플래그를 보내지 않고, 서버가 adminToken으로 직접 판단합니다.
+  const pwHash = btoa(pw + '_djto2026');
 
   try {
-    const res  = await fetch(CONTACT_SCRIPT_URL + '?action=getInquiry&name=' + encodeURIComponent(name) + '&pwHash=' + encodeURIComponent(isAdmin ? '__admin__' : pwHash) + '&isAdmin=' + isAdmin);
+    const res  = await fetch(CONTACT_SCRIPT_URL + '?action=getInquiry&name=' + encodeURIComponent(name) + '&pwHash=' + encodeURIComponent(pwHash) + '&adminToken=' + encodeURIComponent(pw === ADMIN_PASSWORD ? (typeof APP_CONFIG !== 'undefined' ? APP_CONFIG.adminToken : '') : ''));
     const json = await res.json();
 
     if (!json || json.result === 'notfound') {
@@ -3415,15 +3421,15 @@ async function searchInquiry() {
       errEl.classList.add('show'); return;
     }
 
-    if (isAdmin) adminNotice.style.display = 'block';
+    if (json.isAdmin) adminNotice.style.display = 'block';
 
     // 여러 건이면 목록, 1건이면 바로 상세
     const items = Array.isArray(json.items) ? json.items : [json];
 
     if (items.length > 1) {
-      showInquiryList(items, isAdmin);
+      showInquiryList(items, json.isAdmin);
     } else {
-      showInquiryDetail(items[0], isAdmin);
+      showInquiryDetail(items[0], json.isAdmin);
     }
 
   } catch (err) {
@@ -3758,12 +3764,13 @@ async function deletePost(rowIndex) {
 async function adminDeletePost(rowIndex) {
   const pw = prompt('관리자 비밀번호를 입력하세요:');
   if (!pw) return;
-  if (pw !== ADMIN_PASSWORD) { alert('관리자 비밀번호가 올바르지 않습니다.'); return; }
   if (!confirm('관리자 권한으로 삭제하시겠습니까?')) return;
+  const adminToken = (typeof APP_CONFIG !== 'undefined') ? APP_CONFIG.adminToken : '';
+  if (!adminToken || pw !== ADMIN_PASSWORD) { alert('관리자 비밀번호가 올바르지 않습니다.'); return; }
   try {
     await fetch(VOICE_SCRIPT_URL, {
       method: 'POST', headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ type: 'adminDeleteVoice', rowIndex })
+      body: JSON.stringify({ type: 'adminDeleteVoice', rowIndex, adminToken })
     });
     await loadVoicePosts();
   } catch(e) { alert('삭제 중 오류가 발생했습니다.'); }
@@ -4115,10 +4122,7 @@ document.getElementById('proposalForm').addEventListener('submit', async functio
   }
 
   try {
-    // ✅ 아래 URL을 실제 Google Apps Script 웹앱 URL로 교체하세요
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwR_3GWfWuGN2l5QDh2DN3Rs-fuSjfgQaXq-cER9kV_OubdI51LlQSO_JceSo93Nd-A/exec';
-
-    await fetch(GOOGLE_SCRIPT_URL, {
+    await fetch(CONTACT_SCRIPT_URL, {
       method : 'POST',
       headers: { 'Content-Type': 'text/plain' },
       body   : JSON.stringify(data)
