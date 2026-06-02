@@ -1,0 +1,4399 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>꿈씨라운지 | 2026 시민 아이디어 공모전</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700;800&display=swap" rel="stylesheet">
+<style>
+@font-face {
+  font-family: 'Jalnan2';
+  src: url('Jalnan2.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NanumDaHaengCe';
+  src: url('NanumDaHaengCe.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+  background: #f4f6f0;
+  color: #222;
+  overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* ══════════════════════════════
+   HERO SECTION
+══════════════════════════════ */
+.hero-section {
+  width: 100%;
+  position: relative;
+  background-image: url('hero_bg.webp');
+  background-size: cover;
+  background-position: center 40%;
+  background-repeat: no-repeat;
+  padding-bottom: 40px;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 140px;
+  background: linear-gradient(to bottom, transparent, #f4f6f0);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cards-hero {
+  width: 1240px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+  margin-bottom: -40px;
+}
+
+/* ══════════════════════════════
+   NAV
+══════════════════════════════ */
+.nav-wrap {
+  padding: 16px 0 0;
+  position: relative;
+  z-index: 10;
+}
+
+.nav {
+  width: 1240px;
+  height: 68px;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 22px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.07);
+}
+
+.logo img { height: 26px; mix-blend-mode: multiply; }
+.menu { display: flex; gap: 46px; align-items: center; }
+.menu a { font-size: 16px; font-weight: 700; color: #222; transition: color .2s; display: flex; align-items: center; }
+.menu a:hover { color: #164d22; }
+
+.join-btn {
+  background: #1a5c2a;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 800;
+  transition: .2s;
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+}
+.join-btn:hover { background: #175227; }
+
+/* 참여하기 드롭다운 */
+.join-wrap { position: relative; }
+.join-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.13);
+  overflow: hidden;
+  z-index: 100;
+  white-space: nowrap;
+}
+.join-wrap.open .join-dropdown { display: flex; flex-direction: row; }
+.join-dropdown a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #222;
+  transition: .15s;
+  border-right: 1px solid #f0f0f0;
+  border-bottom: none;
+  cursor: pointer;
+}
+.join-dropdown a:last-child { border-right: none; }
+.join-dropdown a:hover { background: #f3faf3; color: #1a5c2a; }
+.join-dropdown a .drop-icon {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: #d4edda;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════
+   히어로 텍스트
+══════════════════════════════ */
+.hero-text-wrap {
+  width: 42%;
+  padding: 20px 0 20px 0;
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  margin-left: 14%;
+}
+
+.hero-year {
+  display: none;
+}
+
+.hero-contest-name {
+  font-family: 'Jalnan2', 'Nanum Gothic', sans-serif;
+  font-size: clamp(16px, 1.7vw, 23px);
+  font-weight: normal;
+  color: #2a8a32;
+  letter-spacing: 0.06em;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.hero-title {
+  font-family: 'Jalnan2', 'Nanum Gothic', sans-serif;
+  font-size: 60px;
+  font-weight: normal;
+  color: #1a6e22;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 16px rgba(255,255,255,0.75);
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.hero-desc {
+  font-family: 'NanumDaHaengCe', 'Nanum Pen Script', cursive;
+  font-size: clamp(16px, 1.5vw, 19px);
+  font-weight: 900;
+  color: #0f3d15;
+  text-align: center;
+  margin-top: -10px;
+  margin-bottom: 4px;
+}
+
+.hero-sub {
+  font-family: 'NanumDaHaengCe', 'Nanum Pen Script', cursive;
+  font-size: clamp(22px, 2.2vw, 26px);
+  font-weight: 900;
+  color: #0f3d15;
+  line-height: 1.9;
+  text-align: center;
+}
+
+/* ══════════════════════════════
+   4카드 (hero-section 안)
+══════════════════════════════ */
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+/* ══════════════════════════════
+   나머지 카드 영역
+══════════════════════════════ */
+.cards-wrap {
+  background: #f7f8f5;
+  padding: 28px 0 28px;
+}
+
+.inner {
+  width: 1240px;
+  margin: 0 auto;
+}
+
+/* 카드 공통 */
+.card {
+  background: white;
+  border-radius: 24px;
+  padding: 22px 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card-head { display: flex; gap: 14px; align-items: flex-start; }
+
+.icon {
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: #d4edda;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.card-label { font-size: 14px; font-weight: 700; color: #888; margin-bottom: 7px; }
+.card-content { font-size: 18px; line-height: 1.5; font-weight: 800; color: #111; }
+
+.card-desc {
+  margin-top: 8px;
+  font-size: 15px; line-height: 1.75; font-weight: 600; color: #222;
+}
+
+.dday {
+  display: inline-block;
+  margin-top: 12px;
+  background: #1e6b31; color: white;
+  padding: 6px 14px; border-radius: 999px;
+  font-weight: 800; font-size: 13px;
+}
+
+/* 하단 3단 */
+.bottom {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1.5fr;
+  gap: 16px;
+  margin-top: 16px;
+  align-items: stretch;
+}
+
+.count-title { font-size: 18px; font-weight: 900; color: #134a1c; margin-bottom: 3px; }
+.count-sub { font-size: 12px; color: #888; }
+
+/* 진행 단계 */
+.progress-wrap {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1.5px solid #f0f0f0;
+}
+.progress-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.step-circle {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  color: #aaa;
+  font-size: 13px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  transition: .3s;
+}
+.step.active .step-circle {
+  background: #1a5c2a;
+  color: white;
+  box-shadow: 0 0 0 4px rgba(26,92,42,0.18);
+}
+.step.done .step-circle { background: #b2dfb4; color: white; }
+.step-label { font-size: 11px; font-weight: 700; color: #aaa; white-space: nowrap; }
+.step.active .step-label { color: #1a5c2a; }
+.step.done .step-label { color: #7abf7c; }
+.step-line {
+  flex: 1; height: 3px;
+  background: #e0e0e0; border-radius: 2px;
+  margin: 0 4px; margin-bottom: 18px;
+}
+
+.timer { display: flex; gap: 8px; margin-top: 18px; justify-content: center; }
+
+.time-box {
+  width: 68px; height: 68px;
+  background: #f3f5e8; border-radius: 14px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.time-box strong { font-size: 28px; color: #134a1c; font-weight: 900; }
+.time-box span { margin-top: 2px; font-size: 11px; color: #888; }
+
+.section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.section-title { font-size: 18px; font-weight: 900; }
+.more-btn { background: #f0efe7; padding: 5px 12px; border-radius: 999px; font-size: 12px; color: #888; font-weight: 600; }
+
+.faq-list { display: flex; flex-direction: column; gap: 8px; }
+.faq-item {
+  background: white;
+  border: 1.5px solid #e8e8e8; border-radius: 12px;
+  overflow: visible;
+  cursor: pointer; transition: border-color .15s;
+}
+.faq-item:hover { border-color: #1a5c2a; }
+.faq-item.open { border-color: #1a5c2a; }
+.faq-q {
+  min-height: 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px; font-size: 13px; font-weight: 600;
+  gap: 8px; color: #222; text-align: left;
+}
+.faq-item.open .faq-q { color: #0f3d15; }
+.faq-plus {
+  font-size: 20px; color: #aaa; font-weight: 300; flex-shrink: 0;
+  transition: transform .25s, color .15s;
+  display: inline-block;
+}
+.faq-item.open .faq-plus { transform: rotate(45deg); color: #1a5c2a; }
+.faq-a {
+  display: none;
+  padding: 12px 16px 18px 16px;
+  font-size: 13px; line-height: 1.85; color: #555; font-weight: 500;
+  border-top: 1px solid #eef5e8;
+  word-break: keep-all;
+}
+.faq-item.open .faq-a { display: block; }
+
+
+/* 이전 우수사례 슬라이드 */
+.prev-slide-wrap { overflow: hidden; margin-top: 4px; }
+.prev-slides {
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.prev-slide {
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 4px 14px;
+  cursor: pointer;
+}
+.prev-slide:hover .prev-slide-img { transform: scale(1.04); }
+.prev-slide-img {
+  width: 100%;
+  height: 170px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #d4edda, #a8d5b5);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+  transition: transform .25s;
+  overflow: hidden;
+}
+.prev-slide-title {
+  font-size: 14px; font-weight: 800; color: #0f3d15;
+  text-align: center;
+}
+.prev-slide-award {
+  font-size: 12px; font-weight: 700;
+  color: #1a5c2a;
+  background: #d4edda;
+  padding: 3px 10px; border-radius: 999px;
+}
+.prev-slide-dots {
+  display: flex; justify-content: center;
+  gap: 6px; margin-top: 8px;
+}
+.prev-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer; transition: background .2s;
+}
+.prev-dot.active { background: #1a5c2a; }
+
+/* CTA */
+.cta {
+  margin-top: 16px;
+  background: #e4f5cc; border-radius: 24px;
+  padding: 10px 36px;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+}
+.cta-left { display: flex; align-items: center; gap: 14px; }
+.cta-icon {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #ceeaa6; display: flex; align-items: center; justify-content: center;
+  font-size: 24px; flex-shrink: 0;
+}
+.cta-title { font-size: 20px; font-weight: 900; color: #1d8528; margin-bottom: 4px; }
+.cta-sub { font-size: 14px; color: #666; }
+.cta-btn {
+  background: #1a5c2a; color: white;
+  padding: 18px 40px; border-radius: 18px;
+  font-size: 18px; font-weight: 800;
+  white-space: nowrap; flex-shrink: 0; transition: .2s;
+  cursor: pointer; border: none;
+}
+.cta-btn:hover { background: #0f3d15; transform: translateY(-2px); }
+
+/* ══════════════════════════════
+   공모전 소개 모달
+══════════════════════════════ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.active { display: flex; }
+
+.modal {
+  background: white;
+  border-radius: 28px;
+  width: 780px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 44px 48px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px; right: 24px;
+  font-size: 26px; color: #aaa;
+  cursor: pointer; border: none; background: none; line-height: 1;
+}
+.modal-close:hover { color: #333; }
+
+.modal h2 { font-size: 24px; font-weight: 900; color: #0f3d15; margin-bottom: 6px; }
+.modal h3 {
+  font-size: 17px; font-weight: 900; color: #0f3d15;
+  margin: 24px 0 8px; padding-left: 10px;
+  border-left: 4px solid #1a5c2a;
+}
+.modal p { font-size: 15px; line-height: 1.85; color: #333; }
+.modal ul { padding-left: 20px; margin-top: 6px; }
+.modal ul li { font-size: 14px; line-height: 1.9; color: #444; }
+.modal .note { font-size: 13px; color: #888; margin-top: 6px; }
+
+.modal table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
+.modal table th { background: #d4edda; color: #0f3d15; font-weight: 800; padding: 10px 14px; border: 1px solid #a8d5b5; text-align: left; }
+.modal table td { padding: 10px 14px; border: 1px solid #e0e0e0; color: #333; line-height: 1.7; }
+.modal table tr:nth-child(even) td { background: #f9fdf3; }
+
+.modal .exclude-box {
+  background: #fff8f0; border: 1.5px solid #f0c080;
+  border-radius: 12px; padding: 14px 18px; margin-top: 14px;
+}
+.modal .exclude-box p { font-size: 13px; color: #a05000; font-weight: 700; margin-bottom: 6px; }
+.modal .exclude-box ul li { font-size: 13px; color: #7a4000; }
+
+/* ══════════════════════════════
+   정기공모 폼 모달 (슬라이드 다운)
+══════════════════════════════ */
+.form-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 2000;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 32px 20px;
+}
+.form-modal-overlay.active {
+  display: flex;
+}
+
+.form-modal {
+  background: #ffffff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 780px;
+  margin: auto;
+  position: relative;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.22);
+  animation: slideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.form-modal-header {
+  background: linear-gradient(135deg, #164d22 0%, #1e6b31 100%);
+  padding: 28px 36px 28px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+/* 헤더 우측 잎사귀 데코 */
+.form-modal-header::after {
+  content: '🌿';
+  position: absolute;
+  right: 60px; top: 12px;
+  font-size: 52px;
+  opacity: 0.25;
+  transform: rotate(20deg);
+  pointer-events: none;
+}
+.form-modal-header::before {
+  content: '🍃';
+  position: absolute;
+  right: 20px; top: 24px;
+  font-size: 38px;
+  opacity: 0.2;
+  transform: rotate(-10deg);
+  pointer-events: none;
+}
+.form-modal-header h2 {
+  font-size: 22px;
+  font-weight: 900;
+  margin-bottom: 5px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.form-modal-header p {
+  font-size: 14px;
+  opacity: 0.88;
+  color: white;
+}
+.form-modal-close {
+  position: absolute;
+  top: 16px; right: 18px;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  color: rgba(255,255,255,0.85);
+  cursor: pointer; border: none; background: rgba(0,0,0,0.15);
+  border-radius: 50%;
+  line-height: 1;
+  transition: background .2s, color .2s;
+}
+.form-modal-close:hover { background: rgba(0,0,0,0.3); color: white; }
+
+.form-modal-body { padding: 32px 36px 36px; background: #fff; }
+
+/* 진행상황 (폼 모달 안) */
+.fm-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 32px;
+}
+.fm-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.fm-step .circle {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  background: rgba(26,92,42,0.15);
+  border: 2px solid rgba(26,92,42,0.3);
+  color: #1a5c2a;
+}
+.fm-step.active .circle {
+  background: #1a5c2a;
+  border-color: #1a5c2a;
+  box-shadow: 0 0 0 4px rgba(26,92,42,0.2);
+  color: white;
+}
+.fm-step .label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #aaa;
+}
+.fm-step.active .label { color: #1a5c2a; }
+.fm-line {
+  width: 80px; height: 2px;
+  background: rgba(26,92,42,0.2);
+  margin: 0 8px;
+  margin-bottom: 22px;
+}
+
+/* 폼 섹션 제목 */
+.fm-section-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #0f3d15;
+  margin: 28px 0 14px;
+  padding-left: 12px;
+  border-left: 4px solid #1a5c2a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.fm-section-title:first-child { margin-top: 0; }
+
+/* 폼 그룹 */
+.fm-form-group { margin-bottom: 16px; }
+.fm-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.fm-form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #444;
+  margin-bottom: 6px;
+}
+.fm-form-group label .req { color: #e74c3c; }
+
+.fm-form-group input,
+.fm-form-group select,
+.fm-form-group textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid #d0d0d0;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  background: #fff;
+  color: #333;
+  transition: border-color .2s, box-shadow .2s;
+  outline: none;
+}
+.fm-form-group input::placeholder,
+.fm-form-group textarea::placeholder { color: #bbb; }
+.fm-form-group input:focus,
+.fm-form-group select:focus,
+.fm-form-group textarea:focus {
+  border-color: #1a5c2a;
+  box-shadow: 0 0 0 3px rgba(26,92,42,0.1);
+}
+.fm-form-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+.fm-form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.65;
+}
+
+/* 파일 업로드 */
+.fm-file-upload {
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  padding: 32px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all .25s;
+  background: #fafafa;
+}
+.fm-file-upload:hover { border-color: #1a5c2a; background: #f4fbf0; }
+.fm-file-upload.has-file { border-color: #166534; background: #edfaf2; }
+.fm-file-upload input { display: none; }
+.fm-file-upload .up-icon { font-size: 2rem; margin-bottom: 10px; color: #1a5c2a; }
+.fm-file-upload .up-text { color: #555; font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.fm-file-upload .up-sub { color: #999; font-size: 12px; }
+.fm-file-upload .up-name { margin-top: 8px; font-weight: 700; color: #166534; font-size: 13px; }
+.fm-file-info { font-size: 12px; color: #888; margin-top: 6px; line-height: 1.6; }
+.fm-file-info.warn { color: #e67e22; }
+
+/* 개인정보 섹션 */
+.fm-privacy-section {
+  background: #f9f9f9;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 22px 18px;
+  margin: 20px 0;
+}
+.fm-privacy-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.fm-privacy-header h3 {
+  font-size: 14px;
+  font-weight: 800;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.fm-privacy-btn {
+  background: white;
+  color: #1a5c2a;
+  border: 1.5px solid #1a5c2a;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all .2s;
+  white-space: nowrap;
+}
+.fm-privacy-btn:hover { background: #1a5c2a; color: white; }
+
+.fm-checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.fm-checkbox-group input[type="checkbox"] {
+  width: 18px; height: 18px;
+  cursor: pointer;
+  accent-color: #1a5c2a;
+  flex-shrink: 0;
+}
+.fm-checkbox-group label {
+  margin: 0;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+}
+
+/* 제출 버튼 */
+.fm-submit-btn {
+  width: 100%;
+  padding: 16px;
+  background: #164d22;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: background .2s, transform .2s, box-shadow .2s;
+  margin-top: 4px;
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.fm-submit-btn:hover {
+  background: #228a2a;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(42,150,50,0.35);
+}
+.fm-submit-btn:disabled { background: #bbb; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* 개인정보 전문 모달 */
+.privacy-full-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 3000;
+  align-items: center;
+  justify-content: center;
+}
+.privacy-full-overlay.active { display: flex; }
+.privacy-full-modal {
+  background: white;
+  border-radius: 20px;
+  padding: 36px;
+  max-width: 580px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+.privacy-full-modal h2 { font-size: 20px; font-weight: 900; color: #0f3d15; margin-bottom: 20px; }
+.privacy-full-modal h4 { font-size: 15px; font-weight: 800; color: #333; margin: 16px 0 8px; }
+.privacy-full-modal p, .privacy-full-modal li { font-size: 14px; line-height: 1.8; color: #555; }
+.privacy-full-modal ul { padding-left: 18px; }
+.pfm-close {
+  position: absolute; top: 16px; right: 20px;
+  font-size: 24px; color: #aaa; cursor: pointer; border: none; background: none;
+}
+
+
+/* ══════════════════════════════
+   대전관광 수다TALK 모달
+══════════════════════════════ */
+.voice-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 2000;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 40px 20px;
+}
+.voice-overlay.active { display: flex; }
+
+.voice-modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 680px;
+  margin: auto;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+  animation: slideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.voice-modal-header {
+  background: linear-gradient(135deg, #164d22, #1e6b31);
+  padding: 26px 36px;
+  position: relative;
+}
+.voice-modal-header h2 { font-size: 22px; font-weight: 900; color: white; margin-bottom: 4px; }
+.voice-modal-header p  { font-size: 13px; color: rgba(255,255,255,0.82); }
+.voice-modal-close {
+  position: absolute; top: 14px; right: 18px;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; color: rgba(255,255,255,0.85);
+  cursor: pointer; border: none;
+  background: rgba(0,0,0,0.15); border-radius: 50%;
+  transition: background .2s;
+}
+.voice-modal-close:hover { background: rgba(0,0,0,0.3); }
+
+.voice-modal-body { padding: 24px 36px 36px; }
+
+/* 글쓰기 폼 */
+.voice-write-form {
+  background: #f8fdf4;
+  border: 1.5px solid #d4edda;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+.voice-write-form h3 {
+  font-size: 15px; font-weight: 800; color: #164d22;
+  margin-bottom: 14px;
+}
+.voice-form-row {
+  display: grid; grid-template-columns: 1fr 2fr; gap: 10px; margin-bottom: 10px;
+}
+.voice-input {
+  width: 100%; padding: 10px 14px;
+  border: 1.5px solid #d0d0d0; border-radius: 10px;
+  font-size: 14px; font-family: inherit;
+  outline: none; transition: border-color .2s;
+}
+.voice-input:focus { border-color: #1a5c2a; box-shadow: 0 0 0 3px rgba(26,92,42,0.1); }
+.voice-textarea {
+  width: 100%; padding: 10px 14px;
+  border: 1.5px solid #d0d0d0; border-radius: 10px;
+  font-size: 14px; font-family: inherit;
+  resize: vertical; min-height: 90px; line-height: 1.6;
+  outline: none; transition: border-color .2s;
+  margin-bottom: 10px;
+}
+.voice-textarea:focus { border-color: #1a5c2a; box-shadow: 0 0 0 3px rgba(26,92,42,0.1); }
+.voice-submit-btn {
+  width: 100%; padding: 12px;
+  background: #164d22; color: white;
+  border: none; border-radius: 10px;
+  font-size: 15px; font-weight: 800;
+  cursor: pointer; transition: background .2s;
+}
+.voice-submit-btn:hover { background: #0f3d15; }
+.voice-submit-btn:disabled { background: #bbb; cursor: not-allowed; }
+
+/* 글 목록 */
+.voice-list { display: flex; flex-direction: column; gap: 12px; }
+.voice-list-empty {
+  text-align: center; padding: 40px 20px;
+  color: #aaa; font-size: 14px;
+}
+.voice-post {
+  border: 1.5px solid #e8f0e0;
+  border-radius: 14px;
+  padding: 22px 18px;
+  background: #fff;
+  transition: box-shadow .2s;
+}
+.voice-post:hover { box-shadow: 0 4px 16px rgba(26,92,42,0.08); }
+.voice-post-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 12px;
+  margin-bottom: 0;
+}
+.voice-post-top-left {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.voice-post-top-right {
+  display: flex; flex-direction: column; align-items: flex-end; gap: 4px; align-self: start;
+}
+.voice-post-nick {
+  font-size: 13px; font-weight: 800; color: #164d22;
+}
+.voice-post-date {
+  font-size: 11px; color: #bbb;
+}
+.voice-post-content {
+  font-size: 14px; line-height: 1.75; color: #333;
+  margin-bottom: 0; word-break: keep-all;
+}
+
+/* 댓글 */
+.voice-comment-list { margin-top: 8px; display: flex; flex-direction: column; gap: 6px; }
+.voice-comment {
+  background: #f4f8f0;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px; color: #444; line-height: 1.6;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 12px;
+}
+.voice-comment-left { display: flex; flex-direction: column; gap: 2px; }
+.voice-comment-right {
+  display: flex; flex-direction: column; align-items: flex-end;
+  gap: 4px; align-self: start;
+}
+.voice-comment-nick { font-weight: 800; color: #1a5c2a; }
+.voice-comment-date { font-size: 11px; color: #bbb; white-space: nowrap; }
+
+.voice-comment-form {
+  display: flex; gap: 8px; margin-top: 10px;
+  border-top: 1px solid #f0f0f0; padding-top: 10px;
+}
+.voice-comment-form input {
+  padding: 8px 12px;
+  border: 1.5px solid #d0d0d0; border-radius: 8px;
+  font-size: 13px; font-family: inherit; outline: none;
+  transition: border-color .2s;
+}
+.voice-comment-form input:focus { border-color: #1a5c2a; }
+.voice-comment-nick-input { width: 110px; flex-shrink: 0; }
+.voice-comment-text-input { flex: 1; }
+.voice-comment-btn {
+  padding: 8px 16px;
+  background: #f4f8f0; color: #164d22;
+  border: 1.5px solid #a8d5b5; border-radius: 8px;
+  font-size: 13px; font-weight: 700;
+  cursor: pointer; transition: background .2s; white-space: nowrap;
+}
+.voice-comment-btn:hover { background: #d4edda; }
+
+/* 수정/삭제 버튼 */
+.voice-post-actions {
+  display: flex; gap: 3px;
+}
+.voice-action-btn {
+  display: inline-flex; align-items: center; gap: 2px;
+  padding: 2px 7px;
+  font-size: 10px; font-weight: 700;
+  border-radius: 5px; cursor: pointer;
+  border: 1px solid; transition: background .2s, color .2s;
+  font-family: inherit; background: transparent; line-height: 1.6;
+}
+.voice-edit-btn { color: #164d22; border-color: #a8d5b5; }
+.voice-edit-btn:hover { background: #d4edda; }
+.voice-delete-btn { color: #c0392b; border-color: #f5c6c6; }
+.voice-delete-btn:hover { background: #ffe0e0; }
+.voice-admin-delete-btn {
+  background: #fff3e0; color: #b35c00;
+  border-color: #f5d5a0;
+  font-size: 11px;
+}
+.voice-admin-delete-btn:hover { background: #ffe5b4; }
+
+/* 수정 폼 */
+.voice-edit-form {
+  margin-top: 10px; display: none;
+  border-top: 1.5px solid #e8f0e0; padding-top: 10px;
+}
+.voice-edit-form textarea {
+  width: 100%; min-height: 80px;
+  border: 1.5px solid #d0d0d0; border-radius: 10px;
+  padding: 10px 14px; font-size: 13px; font-family: inherit;
+  resize: vertical; outline: none; box-sizing: border-box;
+  transition: border-color .2s;
+}
+.voice-edit-form textarea:focus { border-color: #1a5c2a; }
+.voice-edit-actions {
+  display: flex; gap: 8px; margin-top: 8px; justify-content: flex-end;
+}
+.voice-edit-save-btn {
+  padding: 7px 18px; background: #1a5c2a; color: #fff;
+  border: none; border-radius: 8px; font-size: 13px; font-weight: 700;
+  cursor: pointer; font-family: inherit;
+}
+.voice-edit-save-btn:hover { background: #145022; }
+.voice-edit-cancel-btn {
+  padding: 7px 18px; background: #f0f0f0; color: #666;
+  border: none; border-radius: 8px; font-size: 13px; font-weight: 700;
+  cursor: pointer; font-family: inherit;
+}
+.voice-edit-cancel-btn:hover { background: #e0e0e0; }
+
+/* 클린봇 삭제 표시 */
+.voice-post-deleted {
+  border: 1.5px solid #e0e0e0;
+  border-radius: 14px;
+  padding: 14px 18px;
+  background: #fafafa;
+  color: #bbb; font-size: 13px; text-align: center;
+  font-style: italic;
+}
+.voice-post-deleted .cleanbot-icon { font-size: 18px; margin-right: 6px; }
+
+/* 댓글 수정/삭제 */
+.voice-comment-actions {
+  display: flex; gap: 3px;
+}
+.voice-cmt-action-btn {
+  display: inline-flex; align-items: center; gap: 2px;
+  padding: 2px 7px;
+  font-size: 10px; font-weight: 700;
+  border-radius: 5px; cursor: pointer;
+  border: 1px solid; transition: background .2s; font-family: inherit;
+  background: transparent; line-height: 1.6;
+}
+.voice-cmt-edit-btn { color: #164d22; border-color: #a8d5b5; }
+.voice-cmt-edit-btn:hover { background: #d4edda; }
+.voice-cmt-delete-btn { color: #c0392b; border-color: #f5c6c6; }
+.voice-cmt-delete-btn:hover { background: #ffe0e0; }
+
+/* 비밀번호 확인 모달 */
+.voice-pw-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5); z-index: 10000;
+  align-items: center; justify-content: center;
+}
+.voice-pw-overlay.active { display: flex; }
+.voice-pw-modal {
+  background: #fff; border-radius: 16px;
+  padding: 28px 28px 24px; width: 320px; max-width: 90vw;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+  text-align: center;
+}
+.voice-pw-modal h4 { font-size: 16px; color: #164d22; margin: 0 0 8px; }
+.voice-pw-modal p { font-size: 13px; color: #666; margin: 0 0 16px; }
+.voice-pw-input {
+  width: 100%; padding: 10px 14px;
+  border: 1.5px solid #d0d0d0; border-radius: 10px;
+  font-size: 14px; font-family: inherit; outline: none; box-sizing: border-box;
+  transition: border-color .2s; margin-bottom: 14px;
+}
+.voice-pw-input:focus { border-color: #1a5c2a; }
+.voice-pw-error { color: #c0392b; font-size: 12px; margin-bottom: 10px; display: none; }
+.voice-pw-error.show { display: block; }
+.voice-pw-actions { display: flex; gap: 10px; justify-content: center; }
+.voice-pw-confirm-btn {
+  padding: 9px 22px; background: #1a5c2a; color: #fff;
+  border: none; border-radius: 9px; font-size: 14px; font-weight: 700;
+  cursor: pointer; font-family: inherit;
+}
+.voice-pw-confirm-btn:hover { background: #145022; }
+.voice-pw-cancel-btn {
+  padding: 9px 22px; background: #f0f0f0; color: #666;
+  border: none; border-radius: 9px; font-size: 14px; font-weight: 700;
+  cursor: pointer; font-family: inherit;
+}
+
+.voice-loading {
+  text-align: center;
+  padding: 30px 20px;
+  color: #666;
+  font-size: 14px;
+}
+.voice-loading-bar-wrap {
+  width: 100%;
+  background: #e8f5ec;
+  border-radius: 999px;
+  height: 8px;
+  margin: 12px 0 10px;
+  overflow: hidden;
+}
+.voice-loading-bar {
+  height: 8px;
+  width: 0%;
+  background: linear-gradient(90deg, #1a5c2a, #4caf72);
+  border-radius: 999px;
+  animation: voiceBarAnim 1.4s ease-in-out infinite;
+}
+@keyframes voiceBarAnim {
+  0%   { width: 0%;   margin-left: 0%; }
+  50%  { width: 60%;  margin-left: 20%; }
+  100% { width: 0%;   margin-left: 100%; }
+}
+
+/* 성공 모달 */
+.success-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 3000;
+  align-items: center;
+  justify-content: center;
+}
+.success-overlay.active { display: flex; }
+.success-modal {
+  background: white;
+  border-radius: 24px;
+  padding: 50px 40px;
+  max-width: 440px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.success-modal .s-icon { font-size: 4rem; margin-bottom: 16px; }
+.success-modal h2 { font-size: 22px; font-weight: 900; color: #0f3d15; margin-bottom: 12px; }
+.success-modal p { font-size: 15px; color: #666; line-height: 1.7; margin-bottom: 24px; }
+.success-modal button {
+  padding: 14px 36px;
+  background: #1a5c2a;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background .2s;
+}
+.success-modal button:hover { background: #175227; }
+
+/* 로딩 */
+.fm-loading {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.9);
+  z-index: 4000;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.fm-loading.active { display: flex; }
+.spinner {
+  width: 50px; height: 50px;
+  border: 4px solid #d4edda;
+  border-top: 4px solid #1a5c2a;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.fm-loading p { margin-top: 18px; color: #1a5c2a; font-size: 16px; font-weight: 700; }
+
+/* ══════════════════════════════
+   선정절차 모달
+══════════════════════════════ */
+.proc-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  overflow-y: auto;
+}
+.proc-overlay.active { display: flex; }
+
+.proc-modal {
+  background: #fff;
+  border-radius: 28px;
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.22);
+  animation: slideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.proc-modal-header {
+  background: linear-gradient(135deg, #164d22, #1e6b31);
+  padding: 28px 40px;
+  color: white;
+  position: relative;
+}
+.proc-modal-header h2 {
+  font-size: 24px;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 4px;
+}
+.proc-modal-header p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+}
+.proc-modal-close {
+  position: absolute;
+  top: 18px; right: 24px;
+  font-size: 28px;
+  color: rgba(255,255,255,0.8);
+  cursor: pointer; border: none; background: none; line-height: 1;
+  transition: color .2s;
+}
+.proc-modal-close:hover { color: white; }
+
+.proc-modal-body { padding: 36px 40px 40px; }
+
+/* 심사기준 */
+.proc-criteria {
+  margin-top: 28px;
+  border-top: 1.5px solid #e0eed8;
+  padding-top: 24px;
+}
+.proc-criteria-title {
+  font-size: 16px;
+  font-weight: 900;
+  color: #0f3d15;
+  margin-bottom: 16px;
+  padding-left: 12px;
+  border-left: 4px solid #1a5c2a;
+}
+.proc-criteria-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.proc-criteria-item {
+  background: #f4f8f0;
+  border-radius: 12px;
+  padding: 14px 18px;
+  border: 1px solid #d4edda;
+}
+.proc-criteria-head {
+  font-size: 14px;
+  font-weight: 800;
+  color: #1a5c2a;
+  margin-bottom: 5px;
+}
+.proc-criteria-desc {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.7;
+}
+.proc-criteria-notice {
+  font-size: 11px;
+  font-weight: 600;
+  color: #888;
+  background: none;
+  border: none;
+  padding: 6px 0 0 0;
+}
+
+/* ── 5단계 플로우 카드 ── */
+.proc-steps {
+  display: flex;
+  margin-bottom: 8px;
+  border: 2px solid #a8d5b5;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.proc-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid #a8d5b5;
+  position: relative;
+}
+.proc-step:last-child { border-right: none; }
+
+/* 화살표 연결 */
+.proc-step:not(:last-child)::after {
+  content: '▶';
+  position: absolute;
+  right: -13px;
+  top: 46%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #1a5c2a;
+  z-index: 2;
+  background: white;
+  padding: 2px 0;
+  line-height: 1;
+}
+
+.proc-step-title {
+  background: #c8e6d0;
+  border-bottom: 2px solid #a8d5b5;
+  padding: 14px 10px;
+  font-size: 13px;
+  font-weight: 900;
+  color: #0f3d15;
+  text-align: center;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-break: keep-all;
+}
+
+/* 결과발표 단계 강조 */
+.proc-step-title-accent {
+  background: #164d22 !important;
+  color: white !important;
+  border-bottom-color: #1f7a27 !important;
+}
+
+.proc-step-date {
+  background: #f8fcf2;
+  border-bottom: 2px solid #a8d5b5;
+  padding: 10px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1a5c2a;
+  text-align: center;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.proc-step-date-accent {
+  background: #c8e6d0 !important;
+  color: #0f3d15 !important;
+  font-weight: 900 !important;
+}
+
+.proc-step-content {
+  background: white;
+  border-bottom: 2px solid #a8d5b5;
+  padding: 14px 10px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #333;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-break: keep-all;
+}
+
+.proc-step-actor {
+  background: #f0f7e8;
+  padding: 12px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #555;
+  text-align: center;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-break: keep-all;
+}
+
+
+/* ══════════════════════════════
+   작성 가이드라인 모달
+══════════════════════════════ */
+.guide-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 2000;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 40px 20px;
+}
+.guide-overlay.active { display: flex; }
+
+.guide-modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 720px;
+  margin: auto;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+  animation: slideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.guide-modal-header {
+  background: linear-gradient(135deg, #164d22, #1e6b31);
+  padding: 26px 36px;
+  position: relative;
+}
+.guide-modal-header h2 { font-size: 22px; font-weight: 900; color: white; margin-bottom: 4px; }
+.guide-modal-header p  { font-size: 13px; color: rgba(255,255,255,0.82); }
+.guide-modal-close {
+  position: absolute; top: 14px; right: 18px;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; color: rgba(255,255,255,0.85);
+  cursor: pointer; border: none;
+  background: rgba(0,0,0,0.15); border-radius: 50%;
+  transition: background .2s;
+}
+.guide-modal-close:hover { background: rgba(0,0,0,0.3); }
+.guide-modal-body { padding: 28px 36px 36px; display: flex; flex-direction: column; gap: 16px; }
+
+.guide-section {
+  border: 1.5px solid #e0eed8;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.guide-section-title {
+  background: #f4f8f0;
+  padding: 12px 18px;
+  font-size: 15px; font-weight: 900;
+  color: #0f3d15;
+  border-bottom: 1.5px solid #e0eed8;
+  display: flex; align-items: center; gap: 8px;
+}
+.guide-section-body {
+  padding: 14px 18px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.guide-item {
+  display: flex; gap: 10px; align-items: flex-start;
+  font-size: 14px; line-height: 1.75; color: #444;
+}
+.guide-item-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #1a5c2a;
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+.guide-notice {
+  background: #fff8e8;
+  border: 1.5px solid #f5d87a;
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 13px; font-weight: 700; color: #7a5500;
+  line-height: 1.8;
+}
+
+
+/* ══════════════════════════════
+   우수사례 모달
+══════════════════════════════ */
+.case-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  overflow-y: auto;
+}
+.case-overlay.active { display: flex; }
+
+.case-modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 720px;
+  margin: auto;
+  position: relative;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+  animation: slideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.case-modal-header {
+  background: linear-gradient(135deg, #164d22, #1e6b31);
+  padding: 26px 36px;
+  color: white;
+  position: relative;
+}
+.case-modal-header h2 { font-size: 22px; font-weight: 900; color: white; margin-bottom: 4px; }
+.case-modal-header p  { font-size: 13px; color: rgba(255,255,255,0.82); }
+.case-modal-close {
+  position: absolute; top: 14px; right: 18px;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; color: rgba(255,255,255,0.85);
+  cursor: pointer; border: none;
+  background: rgba(0,0,0,0.15);
+  border-radius: 50%;
+  line-height: 1; transition: background .2s;
+}
+.case-modal-close:hover { background: rgba(0,0,0,0.3); color: white; }
+
+.case-modal-body {
+  padding: 28px 36px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.case-card {
+  display: flex;
+  gap: 0;
+  background: #f8fdf2;
+  border: 1.5px solid #d4edba;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: box-shadow .25s;
+}
+.case-card:hover { box-shadow: 0 8px 32px rgba(26,92,42,0.13); }
+
+.case-card-img {
+  width: 240px;
+  flex-shrink: 0;
+  position: relative;
+  background: #ceeaa4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  overflow: hidden;
+}
+.case-card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.case-img-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%; height: 100%;
+  min-height: 200px;
+  padding: 20px;
+}
+.case-img-placeholder .ph-icon { font-size: 3.5rem; opacity: .75; }
+.case-img-placeholder .ph-label {
+  font-size: 12px; font-weight: 700;
+  color: #2a6e30; opacity: .85;
+  text-align: center; line-height: 1.6;
+}
+.case-badge {
+  position: absolute;
+  top: 12px; left: 12px;
+  background: #164d22;
+  color: white;
+  font-size: 11px; font-weight: 900;
+  padding: 4px 12px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.case-card-info {
+  padding: 24px 28px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+.case-card-year {
+  display: inline-block;
+  background: #ddf2c8;
+  color: #0f3d15;
+  font-size: 12px; font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 999px;
+  width: fit-content;
+}
+.case-card-title {
+  font-size: 20px; font-weight: 900;
+  color: #1a3a1a;
+  line-height: 1.3;
+}
+.case-card-desc {
+  font-size: 14px; line-height: 1.85;
+  color: #444;
+}
+.case-card-tags { display: flex; gap: 7px; flex-wrap: wrap; }
+.case-tag {
+  background: #d6f0c4;
+  color: #1f6e27;
+  font-size: 12px; font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+
+/* ══════════════════════════════
+   FAQ 전체 모달
+══════════════════════════════ */
+.faq-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.52);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  overflow-y: auto;
+}
+.faq-modal-overlay.active { display: flex; }
+
+.faq-modal {
+  background: #fff;
+  border-radius: 28px;
+  width: 100%;
+  max-width: 760px;
+  margin: auto;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.22);
+  animation: slideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: visible;
+}
+
+.faq-modal-header {
+  background: linear-gradient(135deg, #164d22, #1e6b31);
+  padding: 28px 40px;
+  position: relative;
+  border-radius: 28px 28px 0 0;
+}
+.faq-modal-header h2 { font-size: 24px; font-weight: 900; color: white; margin-bottom: 4px; }
+.faq-modal-header p  { font-size: 14px; color: rgba(255,255,255,0.85); }
+.faq-modal-close {
+  position: absolute; top: 18px; right: 24px;
+  font-size: 28px; color: rgba(255,255,255,0.8);
+  cursor: pointer; border: none; background: none; line-height: 1;
+  transition: color .2s;
+}
+.faq-modal-close:hover { color: white; }
+
+.faq-modal-body {
+  padding: 28px 36px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 68vh;
+  overflow-y: auto;
+  border-radius: 0 0 28px 28px;
+}
+
+/* 모달 안 FAQ 아이템 */
+.faq-modal-body .faq-item {
+  background: #f8fdf2;
+  border: 1.5px solid #d4edba;
+  border-radius: 12px;
+  overflow: visible;
+}
+.faq-modal-body .faq-item:hover { border-color: #1a5c2a; }
+.faq-modal-body .faq-item.open  { border-color: #1a5c2a; background: #f0fae8; }
+.faq-modal-body .faq-q {
+  padding: 14px 18px;
+  font-size: 14px;
+  min-height: 52px;
+}
+.faq-modal-body .faq-a {
+  padding: 12px 18px 18px 18px;
+  font-size: 14px;
+  line-height: 1.85;
+  color: #444;
+  word-break: keep-all;
+}
+
+/* 번호 뱃지 */
+.faq-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px; height: 24px;
+  background: #164d22;
+  color: white;
+  font-size: 12px; font-weight: 900;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.faq-modal-body .faq-q { gap: 10px; }
+.faq-modal-body .faq-q span:nth-child(2) { flex: 1; text-align: left; }
+
+.faq-category-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #1a5c2a;
+  background: #d4edda;
+  padding: 6px 14px;
+  border-radius: 8px;
+  margin-top: 6px;
+  letter-spacing: 0.03em;
+  align-self: flex-start;
+}
+
+/* 열린제안 폼 올리브 테마 */
+.olive-form .fm-section-title { color: #3a5c00; border-left-color: #7ab020; }
+.olive-form .fm-form-group input:focus,
+.olive-form .fm-form-group select:focus,
+.olive-form .fm-form-group textarea:focus { border-color: #7ab020; box-shadow: 0 0 0 3px rgba(122,176,32,0.15); }
+.olive-form .fm-file-upload:hover { border-color: #7ab020; background: #f6fce8; }
+.olive-form .fm-file-upload.has-file { border-color: #5a8a00; background: #f0f9e0; }
+.olive-form .fm-file-upload .up-icon { color: #5a8a00; }
+.olive-form .fm-file-upload .up-name { color: #5a8a00; }
+.olive-form .fm-privacy-btn { color: #5a8a00; border-color: #7ab020; }
+.olive-form .fm-privacy-btn:hover { background: #5a8a00; color: white; }
+.olive-form .fm-checkbox-group input[type="checkbox"] { accent-color: #5a8a00; }
+
+/* ══════════════════════════════
+   문의하기 모달
+══════════════════════════════ */
+.contact-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.52);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  overflow-y: auto;
+}
+.contact-overlay.active { display: flex; }
+
+.contact-modal {
+  background: #fff;
+  border-radius: 28px;
+  width: 100%;
+  max-width: 720px;
+  margin: auto;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.22);
+  animation: slideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.contact-modal-header {
+  background: linear-gradient(135deg, #164d22, #1e6b31);
+  padding: 28px 40px;
+  position: relative;
+}
+.contact-modal-header h2 { font-size: 24px; font-weight: 900; color: white; margin-bottom: 4px; }
+.contact-modal-header p  { font-size: 14px; color: rgba(255,255,255,0.85); }
+.contact-modal-close {
+  position: absolute; top: 18px; right: 24px;
+  font-size: 28px; color: rgba(255,255,255,0.8);
+  cursor: pointer; border: none; background: none; line-height: 1;
+  transition: color .2s;
+}
+.contact-modal-close:hover { color: white; }
+
+/* 빠른 연락처 배너 */
+.contact-info-bar {
+  background: #f0fae8;
+  border-bottom: 1.5px solid #d4edba;
+  padding: 14px 36px;
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.contact-info-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: #333;
+}
+.contact-info-item .ci-icon {
+  width: 28px; height: 28px;
+  background: #164d22; color: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; flex-shrink: 0;
+}
+.contact-info-item strong { font-weight: 800; color: #0f3d15; }
+
+/* ── 탭 전환 (글쓰기 / 내 문의 조회) ── */
+.contact-nav-tabs {
+  display: flex;
+  border-bottom: 2px solid #c8e6d0;
+  background: #f8fdf2;
+}
+.contact-nav-tab {
+  flex: 1; padding: 14px 0;
+  text-align: center;
+  font-size: 14px; font-weight: 700;
+  color: #888; cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all .2s;
+  margin-bottom: -2px;
+}
+.contact-nav-tab:hover { color: #164d22; }
+.contact-nav-tab.active { color: #164d22; border-bottom-color: #164d22; background: white; }
+
+.contact-modal-body { padding: 24px 36px 32px; }
+
+/* 문의 유형 탭 */
+.contact-type-tabs {
+  display: flex; gap: 8px; margin-bottom: 20px;
+}
+.contact-tab {
+  flex: 1; padding: 10px 0;
+  border: 2px solid #d4edba; border-radius: 10px;
+  background: #f8fdf2; color: #555;
+  font-size: 13px; font-weight: 700;
+  cursor: pointer; text-align: center; transition: all .2s;
+}
+.contact-tab:hover { border-color: #1a5c2a; color: #164d22; }
+.contact-tab.active { background: #164d22; border-color: #164d22; color: white; }
+
+/* 폼 공통 */
+.contact-modal-body .fm-form-group { margin-bottom: 14px; }
+.contact-modal-body .fm-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.contact-modal-body label { display: block; font-size: 14px; font-weight: 700; color: #333; margin-bottom: 7px; }
+.contact-modal-body label .req { color: #e74c3c; }
+.contact-modal-body input,
+.contact-modal-body select,
+.contact-modal-body textarea {
+  width: 100%; padding: 11px 14px;
+  border: 2px solid #b8d9c0; border-radius: 10px;
+  font-size: 14px; font-family: inherit;
+  background: white; color: #333; outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.contact-modal-body input:focus,
+.contact-modal-body select:focus,
+.contact-modal-body textarea:focus {
+  border-color: #1a5c2a;
+  box-shadow: 0 0 0 3px rgba(26,92,42,0.12);
+}
+.contact-modal-body textarea { resize: vertical; min-height: 100px; line-height: 1.65; }
+
+/* 비밀번호 힌트 */
+.pw-hint {
+  font-size: 12px; color: #888; margin-top: 5px;
+  display: flex; align-items: center; gap: 4px;
+}
+
+/* 개인정보 동의 */
+.contact-privacy {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: #f0fae8; border: 1.5px solid #a8d5b5;
+  border-radius: 10px; padding: 12px 14px; margin: 16px 0;
+}
+.contact-privacy input[type="checkbox"] { width: 17px; height: 17px; accent-color: #1a5c2a; cursor: pointer; flex-shrink: 0; margin-top: 2px; }
+.contact-privacy label { margin: 0; font-size: 12px; font-weight: 600; color: #444; cursor: pointer; line-height: 1.55; }
+
+/* 제출 버튼 */
+.contact-submit-btn {
+  width: 100%; padding: 15px;
+  background: linear-gradient(135deg, #164d22, #1e6b31);
+  color: white; border: none; border-radius: 12px;
+  font-size: 16px; font-weight: 900; cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+}
+.contact-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,92,42,0.35); }
+.contact-submit-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* 등록 완료 */
+.contact-done {
+  display: none; flex-direction: column; align-items: center;
+  padding: 36px 0 16px; text-align: center; gap: 12px;
+}
+.contact-done.show { display: flex; }
+.contact-done .done-icon { font-size: 3.2rem; }
+.contact-done h3 { font-size: 20px; font-weight: 900; color: #0f3d15; }
+.contact-done p  { font-size: 14px; color: #555; line-height: 1.75; }
+.contact-done button { margin-top: 6px; padding: 11px 30px; background: #1a5c2a; color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 800; cursor: pointer; }
+
+/* ── 문의 목록 (조회 탭) ── */
+.inquiry-view { display: none; }
+.inquiry-view.show { display: block; }
+
+/* 비밀번호 입력 화면 */
+.inquiry-pw-box {
+  background: #f8fdf2; border: 2px solid #d4edba;
+  border-radius: 16px; padding: 32px 28px; text-align: center;
+}
+.inquiry-pw-box .pw-icon { font-size: 2.8rem; margin-bottom: 12px; }
+.inquiry-pw-box h3 { font-size: 17px; font-weight: 900; color: #0f3d15; margin-bottom: 6px; }
+.inquiry-pw-box p  { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.6; }
+.inquiry-pw-row {
+  display: flex; gap: 10px; max-width: 340px; margin: 0 auto;
+}
+.inquiry-pw-row input {
+  flex: 1; padding: 11px 14px;
+  border: 2px solid #d4edba; border-radius: 10px;
+  font-size: 14px; outline: none; text-align: center; letter-spacing: 2px;
+  transition: border-color .2s;
+}
+.inquiry-pw-row input:focus { border-color: #1a5c2a; }
+.inquiry-pw-row button {
+  padding: 11px 20px;
+  background: #164d22; color: white;
+  border: none; border-radius: 10px;
+  font-size: 14px; font-weight: 800; cursor: pointer;
+  white-space: nowrap;
+}
+.inquiry-pw-row button:hover { background: #1f7a27; }
+.pw-error { color: #e74c3c; font-size: 12px; font-weight: 700; margin-top: 10px; display: none; }
+.pw-error.show { display: block; }
+
+/* 문의 상세 카드 */
+.inquiry-detail { display: none; }
+.inquiry-detail.show { display: block; }
+
+.inquiry-card {
+  background: #f8fdf2; border: 2px solid #a8d5b5;
+  border-radius: 16px; overflow: hidden; margin-bottom: 16px;
+}
+.inquiry-card-header {
+  background: #c8e6d0; padding: 14px 20px;
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1.5px solid #a8d5b5;
+}
+.inquiry-card-header .i-type {
+  background: #164d22; color: white;
+  font-size: 11px; font-weight: 800;
+  padding: 3px 10px; border-radius: 999px;
+}
+.inquiry-card-header .i-date { font-size: 12px; color: #666; }
+.inquiry-card-title {
+  padding: 14px 20px 4px;
+  font-size: 16px; font-weight: 900; color: #1a3a1a;
+}
+.inquiry-card-meta {
+  padding: 4px 20px 12px;
+  font-size: 12px; color: #888;
+}
+.inquiry-card-body {
+  padding: 14px 20px;
+  font-size: 14px; line-height: 1.8; color: #333;
+  border-top: 1.5px solid #c8e6d0;
+  white-space: pre-wrap; word-break: keep-all;
+}
+
+/* 답글 영역 */
+.reply-section { padding: 0 20px 20px; }
+.reply-box {
+  background: white; border: 2px solid #a8d5b5;
+  border-radius: 12px; overflow: hidden;
+}
+.reply-header {
+  background: #164d22; padding: 10px 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.reply-header span { color: white; font-size: 13px; font-weight: 800; }
+.reply-body {
+  padding: 14px 16px;
+  font-size: 14px; line-height: 1.8; color: #333;
+  white-space: pre-wrap; word-break: keep-all;
+}
+.reply-date { padding: 0 16px 12px; font-size: 11px; color: #888; }
+
+/* 답글 없을 때 */
+.no-reply {
+  background: #f8fdf2; border: 2px dashed #a8d5b5;
+  border-radius: 12px; padding: 20px;
+  text-align: center; font-size: 13px; color: #888;
+}
+
+/* 관리자 답글 작성 */
+.admin-reply-form { margin-top: 12px; }
+.admin-reply-form textarea {
+  width: 100%; padding: 12px 14px;
+  border: 2px solid #b8d9c0; border-radius: 10px;
+  font-size: 14px; font-family: inherit;
+  resize: vertical; min-height: 90px; line-height: 1.65;
+  outline: none;
+  transition: border-color .2s;
+}
+.admin-reply-form textarea:focus { border-color: #1a5c2a; }
+.admin-reply-btn {
+  margin-top: 8px; padding: 10px 24px;
+  background: #164d22; color: white;
+  border: none; border-radius: 10px;
+  font-size: 14px; font-weight: 800; cursor: pointer;
+  float: right;
+}
+.admin-reply-btn:hover { background: #1f7a27; }
+
+/* 돌아가기 버튼 */
+.back-btn {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 700; color: #164d22;
+  cursor: pointer; margin-bottom: 16px;
+  background: none; border: none; padding: 0;
+}
+.back-btn:hover { text-decoration: underline; }
+
+/* 문의 목록 */
+.inquiry-list { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.inquiry-list-item {
+  background: #f8fdf2;
+  border: 2px solid #d4edba;
+  border-radius: 14px;
+  padding: 14px 18px;
+  cursor: pointer;
+  transition: all .2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.inquiry-list-item:hover { border-color: #1a5c2a; background: #eef9e4; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(42,150,50,0.1); }
+.inquiry-list-item-left { flex: 1; min-width: 0; }
+.inquiry-list-item-type {
+  display: inline-block;
+  background: #164d22; color: white;
+  font-size: 11px; font-weight: 800;
+  padding: 2px 9px; border-radius: 999px;
+  margin-bottom: 5px;
+}
+.inquiry-list-item-title {
+  font-size: 15px; font-weight: 800; color: #1a3a1a;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.inquiry-list-item-date { font-size: 12px; color: #888; margin-top: 3px; }
+.inquiry-list-item-right { flex-shrink: 0; text-align: right; }
+.inquiry-reply-badge {
+  font-size: 12px; font-weight: 800;
+  padding: 4px 11px; border-radius: 999px;
+}
+.inquiry-reply-badge.answered { background: #e2f5d0; color: #0f3d15; }
+.inquiry-reply-badge.waiting  { background: #fff3e0; color: #e65100; }
+.inquiry-list-title {
+  font-size: 15px; font-weight: 900; color: #0f3d15;
+  margin-bottom: 12px; padding-bottom: 10px;
+  border-bottom: 1.5px solid #c8e6d0;
+}
+.inquiry-list-back {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 700; color: #164d22;
+  cursor: pointer; background: none; border: none;
+  padding: 0; margin-bottom: 14px;
+}
+.inquiry-list-back:hover { text-decoration: underline; }
+
+/* 수다TALK 강조 */
+@keyframes sudaFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+.suda-talk {
+  background: #e8f5ec;
+  color: #1a5c2a;
+  padding: 3px 10px;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  animation: sudaFloat 2.5s ease-in-out infinite;
+}
+
+
+  .hero-title { font-size: 60px; }
+  .time-box { width: 48px; height: 48px; }
+  .time-box strong { font-size: 18px; }
+}
+
+
+
+/* ── 햄버거 버튼 ── */
+.mobile-only { display: none; }
+
+.hamburger-btn {
+  display: none !important;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #1a5c2a;
+  padding: 4px 8px;
+}
+
+/* ── 모바일 메뉴 ── */
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 999;
+}
+.mobile-menu-overlay.active { display: block; }
+
+.mobile-menu {
+  position: fixed;
+  top: 0; right: -100%;
+  width: 75%;
+  max-width: 300px;
+  height: 100%;
+  background: white;
+  z-index: 1000;
+  transition: right 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+}
+.mobile-menu.active { right: 0; }
+
+.mobile-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.mobile-menu-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+  flex: 1;
+}
+.mobile-menu-nav a {
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #222;
+  border-bottom: 1px solid #f8f8f8;
+  text-decoration: none;
+}
+.mobile-menu-nav a:hover { background: #f3faf3; color: #1a5c2a; }
+
+.mobile-menu-btns {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid #f0f0f0;
+}
+.mobile-join-btn {
+  display: block;
+  padding: 13px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+  cursor: pointer;
+  background: #f3faf3;
+  color: #1a5c2a;
+  border: 1.5px solid #a8d5b5;
+  text-decoration: none;
+}
+.mobile-join-main {
+  background: #1a5c2a;
+  color: white;
+  border-color: #1a5c2a;
+}
+
+/* ══════════════════════════════
+   모바일 반응형
+══════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* 기본 */
+  body { min-width: unset; overflow-x: hidden; }
+
+  /* ── 네비 ── */
+  .nav-wrap { padding: 10px 0 0; }
+  .nav { width: calc(100% - 24px) !important; }
+  .mobile-only { display: none; }
+
+.hamburger-btn { display: block !important; }
+  .menu { display: none; }
+  .join-wrap { display: none; }
+  .inner { width: 100% !important; padding: 0 12px; box-sizing: border-box; }
+  .nav {
+    width: calc(100% - 24px);
+    height: 50px;
+    padding: 0 14px;
+    border-radius: 12px;
+  }
+  .logo img { height: 20px; }
+  .join-btn { padding: 7px 12px; font-size: 12px; border-radius: 8px; }
+  .join-dropdown { flex-direction: column !important; }
+  .join-dropdown a { border-right: none !important; border-bottom: 1px solid #f0f0f0 !important; }
+  .join-dropdown a:last-child { border-bottom: none !important; }
+
+  /* ── 히어로 ── */
+  .hero-section {
+    background-size: cover;
+    background-position: 70% top;
+    min-height: 280px;
+  }
+  .hero-text-wrap {
+    width: 100%;
+    margin-left: 0;
+    padding: 28px 20px 16px;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .hero-contest-name { font-size: 12px; }
+  .hero-title { font-size: 60px; line-height: 1.15; }
+  .hero-desc { font-size: 12px; margin-top: -6px; }
+  .hero-sub { font-size: 15px; text-align: left; }
+
+  /* ── 4카드 ── */
+  .cards-hero { padding: 0 12px 16px; width: 100% !important; box-sizing: border-box; }
+  .grid-4 {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+  .card { padding: 12px 14px; border-radius: 16px; }
+  .card-head { gap: 10px; }
+  .icon { width: 36px; height: 36px; font-size: 16px; }
+  .card-label { font-size: 12px; margin-bottom: 4px; }
+  .card-content { font-size: 14px; }
+  .card-desc { font-size: 12px; }
+  .dday { font-size: 11px; padding: 4px 10px; margin-top: 8px; }
+
+  /* ── 하단 3단 → 1단 ── */
+  .inner { width: 100%; padding: 0 12px; box-sizing: border-box; }
+  .cards-wrap { padding: 16px 0; }
+  .bottom { grid-template-columns: 1fr !important; gap: 10px; }
+
+  /* 카운트다운 */
+  .count-title { font-size: 15px; }
+  .timer { gap: 6px; margin-top: 12px; }
+  .time-box { width: 52px; height: 52px; border-radius: 10px; }
+  .time-box strong { font-size: 20px; }
+  .time-box span { font-size: 10px; }
+
+  /* 진행단계 */
+  .progress-wrap { margin-top: 20px; }
+  .step-circle { width: 26px; height: 26px; font-size: 10px; }
+  .step-label { font-size: 9px; }
+  .step-line { margin-bottom: 14px; }
+
+  /* ── 사업화사례 ── */
+  .prev-slide-img { height: 130px !important; }
+  .prev-slide-title { font-size: 13px; }
+
+  /* ── 정보섹션 ── */
+  .info-section { padding: 20px 12px; }
+  .info-grid { grid-template-columns: 1fr !important; gap: 12px; }
+
+  /* ── CTA 배너 ── */
+  .cta-wrap {
+    flex-direction: column !important;
+    gap: 12px;
+    padding: 18px 16px;
+  }
+  .cta-left { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .cta-title { font-size: 16px; }
+  .cta-sub { font-size: 12px; }
+  .cta-btn { width: 100%; text-align: center; padding: 12px; font-size: 14px; }
+
+  /* ── FAQ ── */
+  .faq-q { font-size: 13px; padding: 14px 12px; }
+  .faq-a { font-size: 12px; padding: 10px 12px; }
+
+  /* ── 푸터 ── */
+  .footer { padding: 20px 12px; }
+  .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+  .footer-links { flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .footer-info { font-size: 11px; line-height: 1.8; }
+
+  /* ── 모달 폼 ── */
+  .modal-overlay { align-items: flex-end !important; padding: 0 !important; }
+  .form-modal {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 20px 20px 0 0 !important;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .fm-form-row { flex-direction: column !important; gap: 0 !important; }
+  .fm-form-group { margin-bottom: 14px; }
+  .fm-form-group label { font-size: 13px; }
+  .fm-form-group input, .fm-form-group select, .fm-form-group textarea { font-size: 14px; }
+
+  /* ── 수다TALK 모달 ── */
+  .voice-modal-overlay { align-items: flex-end !important; }
+  .voice-modal {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 20px 20px 0 0 !important;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  /* ── 섹션 공통 ── */
+  .section-head { margin-bottom: 10px; }
+  .section-title { font-size: 15px; }
+  .more-btn { font-size: 11px; padding: 4px 10px; }
+}
+
+@media (max-width: 400px) {
+  .grid-4 { grid-template-columns: 1fr 1fr !important; }
+  .hero-title { font-size: 60px; }
+  .time-box { width: 44px; height: 44px; }
+  .time-box strong { font-size: 16px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ══ HERO SECTION ══ -->
+<div class="hero-section">
+
+  <!-- NAV -->
+  <div class="nav-wrap">
+    <header class="nav">
+      <div class="logo">
+        <img src="logo.png" alt="대전관광공사">
+      </div>
+      <nav class="menu">
+        <a href="#" onclick="openModal(); return false;">공모전 소개</a>
+        <a href="#" onclick="openProcModal(); return false;">선정절차</a>
+        <a href="#" onclick="openFaqModal(); return false;">FAQ</a>
+        <a href="#" onclick="openContactModal(); return false;">문의하기</a>
+        <a href="#" onclick="openGuideModal(); return false;">작성 가이드라인</a>
+        <a href="#" onclick="openVoiceModal(); return false;">💬 대전관광 <span class="suda-talk">수다TALK</span></a>
+      </nav>
+      <div class="mobile-only"><button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()">☰</button></div>
+      <div class="join-wrap" id="joinWrap">
+        <button class="join-btn" onclick="toggleJoin()">참여하기 ▾</button>
+        <div class="join-dropdown">
+          <a onclick="openOpenProposalModal(); return false;"><span class="drop-icon">💬</span>열린제안 <span style="font-size:11px;background:#d4edda;color:#164d22;padding:2px 7px;border-radius:999px;margin-left:4px;font-weight:700;">상시</span></a>
+          <a onclick="openFormModal(); return false;"><span class="drop-icon">📋</span>정기공모</a>
+        </div>
+      </div>
+    </header>
+  </div>
+
+
+  <!-- 모바일 메뉴 -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <img src="logo.png" alt="대전관광공사" style="height:22px;">
+      <button onclick="closeMobileMenu()" style="background:none;border:none;font-size:22px;cursor:pointer;color:#333;">✕</button>
+    </div>
+    <nav class="mobile-menu-nav">
+      <a href="#" onclick="openModal(); closeMobileMenu(); return false;">공모전 소개</a>
+      <a href="#" onclick="openProcModal(); closeMobileMenu(); return false;">선정절차</a>
+      <a href="#" onclick="openFaqModal(); closeMobileMenu(); return false;">FAQ</a>
+      <a href="#" onclick="openContactModal(); closeMobileMenu(); return false;">문의하기</a>
+      <a href="#" onclick="openGuideModal(); closeMobileMenu(); return false;">작성 가이드라인</a>
+      <a href="#" onclick="openVoiceModal(); closeMobileMenu(); return false;">💬 대전관광 수다TALK</a>
+    </nav>
+    <div class="mobile-menu-btns">
+      <a class="mobile-join-btn" onclick="openOpenProposalModal(); closeMobileMenu(); return false;">💬 열린제안 <span style="font-size:11px;background:#d4edda;color:#164d22;padding:2px 6px;border-radius:999px;margin-left:4px;">상시</span></a>
+      <a class="mobile-join-btn mobile-join-main" onclick="openFormModal(); closeMobileMenu(); return false;">📋 정기공모 참여하기</a>
+    </div>
+  </div>
+
+  <!-- 히어로 텍스트 -->
+  <div class="hero-text-wrap">
+    <div class="hero-year">2026</div>
+    <div class="hero-contest-name">2026 주민참여 아이디어 공모전</div>
+    <div class="hero-title">꿈씨라운지</div>
+    <div class="hero-desc">[대전(Daejeon)의 관광 아이디어가 모이는 라운지]</div><div class="hero-sub">시민의 아이디어가 모이는 공간, 대전 관광의 변화를 만듭니다.</div>
+  </div>
+
+  <!-- 4카드 -->
+  <div class="cards-hero">
+    <div class="grid-4">
+      <div class="card">
+        <div class="card-head">
+          <div class="icon">📅</div>
+          <div>
+            <div class="card-label">접수기간</div>
+            <div class="card-content">2026. 6. 4.(목) ~<br>8. 31.(월)</div>
+            <div class="dday">D-DAY 34</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div class="icon">👥</div>
+          <div>
+            <div class="card-label">참여대상</div>
+            <div class="card-desc" style="font-weight:800; font-size:16px; word-break:keep-all;">대전광역시에 거주하거나 생활권(직장·학교 등)을 둔 시민 누구나<br>(개인 또는 단체)</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div class="icon">💡</div>
+          <div>
+            <div class="card-label">공모주제</div>
+            <div class="card-desc" style="font-weight:800; position:relative; padding-left:14px; font-size:16px; word-break:keep-all;">
+              "더 매력적인 대전,<br>당신이 만드는 내일"
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:4px; margin-top:7px;">
+              <span style="background:#e8f5ec; color:#1a5c2a; font-size:10px; font-weight:700; padding:2px 0; border-radius:999px; border:1px solid #a8d5b5; width:50px; text-align:center;">관광콘텐츠</span>
+              <span style="background:#e8f5ec; color:#1a5c2a; font-size:10px; font-weight:700; padding:2px 0; border-radius:999px; border:1px solid #a8d5b5; width:50px; text-align:center;">꿈돌이 IP</span>
+              <span style="background:#e8f5ec; color:#1a5c2a; font-size:10px; font-weight:700; padding:2px 0; border-radius:999px; border:1px solid #a8d5b5; width:50px; text-align:center;">지역상권</span>
+              <span style="background:#e8f5ec; color:#1a5c2a; font-size:10px; font-weight:700; padding:2px 0; border-radius:999px; border:1px solid #a8d5b5; width:50px; text-align:center;">친환경</span>
+              <span style="background:#e8f5ec; color:#1a5c2a; font-size:10px; font-weight:700; padding:2px 0; border-radius:999px; border:1px solid #a8d5b5; width:50px; text-align:center;">편의개선</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div class="icon">🏆</div>
+          <div>
+            <div class="card-label">시상내역</div>
+            <div class="card-content">총 상금 400만원</div>
+            <div class="card-desc" style="color:#8a5050;">
+              최우수상&nbsp;&nbsp;200만원 (1팀)<br>
+              우수상&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;100만원 (1팀)<br>
+              장려상&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;50만원 (2팀)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- ══ HERO SECTION 끝 ══ -->
+
+<!-- 나머지 카드 영역 -->
+<div class="cards-wrap">
+  <div class="inner">
+    <div class="bottom">
+      <div class="card" style="display:flex; flex-direction:column; justify-content:center;">
+        <div class="count-title">D-DAY 카운트다운 🍃</div>
+        <div class="count-sub">접수 마감까지 남은 시간</div>
+        <div class="timer">
+          <div class="time-box"><strong id="days">--</strong><span>일</span></div>
+          <div class="time-box"><strong id="hours">--</strong><span>시간</span></div>
+          <div class="time-box"><strong id="minutes">--</strong><span>분</span></div>
+          <div class="time-box"><strong id="seconds">--</strong><span>초</span></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-steps">
+            <div class="step active">
+              <div class="step-circle">1</div>
+              <div class="step-label">접수중</div>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+              <div class="step-circle">2</div>
+              <div class="step-label">심사중</div>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+              <div class="step-circle">3</div>
+              <div class="step-label">심사완료</div>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+              <div class="step-circle">4</div>
+              <div class="step-label">발표</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- 이전 우수사례 슬라이드 -->
+      <div class="card prev-cases-card">
+        <div class="section-head">
+          <div class="section-title">🏆 실제 사업화 사례</div>
+          <a href="#" class="more-btn" onclick="openCaseModal(); return false;">더보기 →</a>
+        </div>
+        <div class="prev-slide-wrap">
+          <div class="prev-slides" id="prevSlides">
+            <div class="prev-slide">
+              <div class="prev-slide-img"><img src="img_1.png" style="width:100%; height:100%; object-fit:cover; border-radius:12px;"></div>
+              <div class="prev-slide-title">대전 빵축제</div>
+            </div>
+            <div class="prev-slide">
+              <div class="prev-slide-img"><img src="img_2.png" style="width:100%; height:100%; object-fit:cover; border-radius:12px;"></div>
+              <div class="prev-slide-title">꿈돌이 굿즈 개발</div>
+            </div>
+          </div>
+          <div class="prev-slide-dots" id="prevDots">
+            <span class="prev-dot active" onclick="goSlide(0)"></span>
+            <span class="prev-dot" onclick="goSlide(1)"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-head">
+          <div class="section-title">자주 묻는 질문 (FAQ)</div>
+          <a href="#" class="more-btn" onclick="openFaqModal(); return false;">더보기 →</a>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q"><span>Q1. 아이디어가 이미 사업화된 내용도 참여 가능한가요?</span><span class="faq-plus">+</span></div>
+            <div class="faq-a">A. 타 기관 또는 타 공모전에서 이미 사업화되었거나 수상한 아이디어는 심사 대상에서 제외될 수 있습니다.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q"><span>Q2. 팀으로도 참가할 수 있나요?</span><span class="faq-plus">+</span></div>
+            <div class="faq-a">A. 네, 개인 또는 팀 단위로 참가할 수 있습니다. 팀 참여 시 대표 제안자를 지정하여 접수해야 합니다.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q"><span>Q3. 여러 개 아이디어를 제출할 수 있나요?</span><span class="faq-plus">+</span></div>
+            <div class="faq-a">A. 네, 1인(팀)당 제출 건수에 제한은 없으며, 아이디어별로 각각 접수해 주시기 바랍니다.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q"><span>Q4. 접수 후 수정할 수 있나요?</span><span class="faq-plus">+</span></div>
+            <div class="faq-a">A. 접수 후 수정이 필요한 경우, 접수기간 내에 보완된 내용으로 다시 제출하시면 됩니다.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+      <div class="cta-left">
+        <div class="cta-icon">📢</div>
+        <div>
+          <div class="cta-title">꿈씨라운지에서 당신의 아이디어를 펼쳐주세요. ✨</div>
+        </div>
+      </div>
+      <button class="cta-btn" onclick="openFormModal()">공모에 참여하기 →</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════
+   공모전 소개 모달
+══════════════════════════════ -->
+<div class="modal-overlay" id="introModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h2>2026 주민참여 아이디어 공모전</h2>
+    <h3>공모전 소개</h3>
+    <p>대전관광공사는 시민 여러분의 다양한 아이디어와 제안을 바탕으로 대전 관광의 새로운 변화를 만들어가고자 「2026 주민참여 아이디어 공모전」을 개최합니다.<br><br>
+    새로운 관광 콘텐츠 제안부터 대전만의 특색을 살린 관광 활성화 방안까지, 대전 관광 발전을 위한 다양한 의견을 자유롭게 제안해 주세요.</p>
+    <h3>참여자격</h3>
+    <p>대전광역시에 거주하거나 생활권(직장·학교 등)을 둔 시민 누구나 참여 가능 (개인 또는 단체)</p>
+    <h3>공모분야</h3>
+
+    <div style="display:flex; flex-direction:column; gap:16px; margin-top:10px;">
+
+      <!-- 열린제안 -->
+      <div style="flex:1; border:2px solid #8fbc45; border-radius:12px; overflow:hidden;">
+        <div style="background:#e8f5c8; padding:10px 16px; display:flex; align-items:center; gap:8px;">
+          <span style="background:#fff; color:#4a7000; font-size:11px; font-weight:800; padding:2px 8px; border-radius:999px; border:1px solid #8fbc45;">상시</span>
+          <span style="font-size:16px; font-weight:900; color:#3a5c00;">💬 열린제안</span>
+        </div>
+        <div style="padding:14px 16px;">
+          <p style="font-size:13px; color:#555; margin-bottom:10px;">대전 관광과 관련된 아이디어라면 언제든지 자유롭게 제안해주세요!</p>
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:4px;">
+            <span style="background:#f0f9e0; color:#3a5c00; font-size:13px; font-weight:700; padding:6px 14px; border-radius:999px; border:1px solid #8fbc45;">공사 주요 사업분야</span>
+            <span style="background:#f0f9e0; color:#3a5c00; font-size:13px; font-weight:700; padding:6px 14px; border-radius:999px; border:1px solid #8fbc45;">지역문제 해결</span>
+            <span style="background:#f0f9e0; color:#3a5c00; font-size:13px; font-weight:700; padding:6px 14px; border-radius:999px; border:1px solid #8fbc45;">ESG·친환경 관광</span>
+            <span style="background:#f0f9e0; color:#3a5c00; font-size:13px; font-weight:700; padding:6px 14px; border-radius:999px; border:1px solid #8fbc45;">기타 제안</span>
+          </div>
+          <p style="font-size:12px; color:#888; margin-top:12px;">※ 단순 민원, 시설 고장 신고, 개인 불편사항 접수 등은 처리 대상에서 제외될 수 있습니다.</p>
+        </div>
+      </div>
+
+      <!-- 정기공모 -->
+      <div style="flex:1; border:2px solid #a8d5b5; border-radius:12px; overflow:hidden;">
+        <div style="background:#d4edda; padding:10px 16px; display:flex; align-items:center; gap:8px;">
+          <span style="background:#fff; color:#1a5c2a; font-size:11px; font-weight:800; padding:2px 8px; border-radius:999px; border:1px solid #a8d5b5;">정기</span>
+          <span style="font-size:16px; font-weight:900; color:#0f3d15;">📋 공모제안</span>
+        </div>
+        <div style="padding:14px 16px;">
+          <p style="font-size:13px; color:#555; margin-bottom:4px;"><strong>2026 대전관광 아이디어 공모전</strong></p>
+          <p style="font-size:13px; color:#777; margin-bottom:10px;">접수기간: 2026. 6. 4.(목) ~ 8. 31.(월)</p>
+          <p style="font-size:13px; color:#444; font-weight:700; margin-bottom:6px;">🎯 공모주제</p>
+          <p style="font-size:13px; color:#333; background:#e8f5ec; border-left:3px solid #a8d5b5; padding:8px 12px; border-radius:4px; margin-bottom:12px;">"더 매력적인 대전, 당신이 만드는 내일"</p>
+          <p style="font-size:13px; color:#444; font-weight:700; margin-bottom:6px;">📌 제안 가능 분야</p>
+          <table style="margin-top:0; border-color:#a8d5b5;">
+            <thead><tr>
+              <th style="width:38%; background:#d4edda; color:#0f3d15; border-color:#a8d5b5;">분야</th>
+              <th style="background:#d4edda; color:#0f3d15; border-color:#a8d5b5;">내용</th>
+            </tr></thead>
+            <tbody>
+              <tr><td style="border-color:#c0e0c8;">관광콘텐츠</td><td style="border-color:#c0e0c8;">지역 특색을 살린 관광 콘텐츠·코스·체험 프로그램</td></tr>
+              <tr><td style="background:#f3faf3; border-color:#c0e0c8;">꿈돌이 IP 활용</td><td style="background:#f3faf3; border-color:#c0e0c8;">꿈돌이를 활용한 관광 브랜딩, 굿즈, 콘텐츠 개발</td></tr>
+              <tr><td style="border-color:#c0e0c8;">지역상권 연계</td><td style="border-color:#c0e0c8;">로컬 브랜드·소상공인과 협업한 관광상품 기획</td></tr>
+              <tr><td style="background:#f3faf3; border-color:#c0e0c8;">친환경 관광</td><td style="background:#f3faf3; border-color:#c0e0c8;">생태관광, 탄소중립, 친환경 관광문화 확산 방안</td></tr>
+              <tr><td style="border-color:#c0e0c8;">관광 편의 개선</td><td style="border-color:#c0e0c8;">교통·접근성·안내 등 관광 인프라 개선 아이디어</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+    <h3>시상내역</h3>
+    <table>
+      <thead><tr><th>시상구분</th><th>시상금</th><th>선정 수</th></tr></thead>
+      <tbody>
+        <tr><td>최우수상</td><td>200만원</td><td>1팀</td></tr>
+        <tr><td>우수상</td><td>100만원</td><td>1팀</td></tr>
+        <tr><td>장려상</td><td>50만원</td><td>2팀</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════
+   선정절차 모달
+══════════════════════════════ -->
+<div class="proc-overlay" id="procModal">
+  <div class="proc-modal">
+
+    <div class="proc-modal-header">
+      <button class="proc-modal-close" onclick="closeProcModal()">×</button>
+      <h2>📋 선정절차</h2>
+      <p>2026 대전관광공사 주민참여 아이디어 공모전 선정 과정 안내</p>
+    </div>
+
+    <div class="proc-modal-body">
+
+      <!-- 5단계 플로우 -->
+      <div class="proc-steps">
+
+        <!-- 1단계: 접수 -->
+        <div class="proc-step">
+          <div class="proc-step-title">접수</div>
+          <div class="proc-step-date">6.2(화) ~ 8.31(월)</div>
+          <div class="proc-step-content">주민 사업<br>공모</div>
+          <div class="proc-step-actor">대전시민<br>누구나</div>
+        </div>
+
+        <!-- 2단계: 1차 서류검토 -->
+        <div class="proc-step">
+          <div class="proc-step-title">1차 서류검토</div>
+          <div class="proc-step-date">9월 중</div>
+          <div class="proc-step-content">법령·조례 등<br>사업 타당성 검토</div>
+          <div class="proc-step-actor">사업부서<br>예산부서</div>
+        </div>
+
+        <!-- 3단계: 2차 심의 -->
+        <div class="proc-step">
+          <div class="proc-step-title">2차 심의</div>
+          <div class="proc-step-date">10월 중</div>
+          <div class="proc-step-content">우선순위·<br>사업구체화 등</div>
+          <div class="proc-step-actor">주민참여위원회</div>
+        </div>
+
+        <!-- 4단계: 최종 선정 -->
+        <div class="proc-step">
+          <div class="proc-step-title">최종 선정</div>
+          <div class="proc-step-date">11월 중</div>
+          <div class="proc-step-content">주민참여 제안사업<br>최종 선정</div>
+          <div class="proc-step-actor">주민참여위원회</div>
+        </div>
+
+        <!-- 5단계: 결과 발표 -->
+        <div class="proc-step proc-step-last">
+          <div class="proc-step-title proc-step-title-accent">결과 발표</div>
+          <div class="proc-step-date">12월 초</div>
+          <div class="proc-step-content">수상자 발표</div>
+          <div class="proc-step-actor">홈페이지 공고</div>
+        </div>
+
+      </div>
+      <!-- /proc-steps -->
+
+      <!-- 심사기준 -->
+      <div class="proc-criteria" style="margin-top:12px;">
+        <div class="proc-criteria-title">📋 심사기준</div>
+        <div class="proc-criteria-list">
+          <div class="proc-criteria-item">
+            <div class="proc-criteria-head">○ 사업의 타당성 및 창의성</div>
+            <div class="proc-criteria-desc">사업 목적과 내용의 명확성 / 아이디어의 독창성 및 차별성</div>
+          </div>
+          <div class="proc-criteria-item">
+            <div class="proc-criteria-head">○ 사업의 효율성 및 효과성</div>
+            <div class="proc-criteria-desc">투입 대비 기대성과의 적정성 / 지역사회 기여도 및 주민 편익 증진 효과</div>
+          </div>
+          <div class="proc-criteria-item">
+            <div class="proc-criteria-head">○ 내용 충실도</div>
+            <div class="proc-criteria-desc">제안 내용의 구체성 및 완성도 / 추진방안 및 기대효과의 실현 가능성</div>
+          </div>
+        </div>
+        <div class="proc-criteria-notice">※ 심사 결과에 따라 선정 기준에 부합하는 제안이 없을 경우 선정하지 않을 수 있습니다.</div>
+      </div>
+
+    </div><!-- /proc-modal-body -->
+  </div><!-- /proc-modal -->
+</div><!-- /proc-overlay -->
+
+
+<!-- ══════════════════════════════
+   작성 가이드라인 모달
+══════════════════════════════ -->
+<div class="guide-overlay" id="guideModal">
+  <div class="guide-modal">
+    <div class="guide-modal-header">
+      <button class="guide-modal-close" onclick="closeGuideModal()">×</button>
+      <h2>📝 작성 가이드라인</h2>
+      <p>좋은 제안서 작성을 위한 안내입니다</p>
+    </div>
+    <div class="guide-modal-body">
+
+      <!-- 제안서 구성 -->
+      <div class="guide-section">
+        <div class="guide-section-title">📋 제안서 구성 요소</div>
+        <div class="guide-section-body">
+          <div class="guide-item"><div class="guide-item-dot"></div><div><strong>제안 제목</strong> — 아이디어의 핵심을 한 문장으로 명확하게 표현해주세요.</div></div>
+          <div class="guide-item"><div class="guide-item-dot"></div><div><strong>현황 및 문제점</strong> — 현재 대전 관광의 어떤 부분을 개선하고자 하는지 구체적으로 작성해주세요.</div></div>
+          <div class="guide-item"><div class="guide-item-dot"></div><div><strong>제안 내용</strong> — 아이디어의 구체적인 실행 방안과 추진 방식을 작성해주세요.</div></div>
+          <div class="guide-item"><div class="guide-item-dot"></div><div><strong>기대 효과</strong> — 제안이 실현되었을 때 시민과 지역에 미치는 긍정적 효과를 작성해주세요.</div></div>
+        </div>
+      </div>
+
+      <!-- 좋은 제안서 tip -->
+      <div class="guide-section">
+        <div class="guide-section-title">✅ 좋은 제안서 작성 TIP</div>
+        <div class="guide-section-body">
+          <div class="guide-item"><div class="guide-item-dot"></div><div>실현 가능하고 구체적인 아이디어일수록 심사에서 높은 평가를 받습니다.</div></div>
+          <div class="guide-item"><div class="guide-item-dot"></div><div>대전관광공사 사업 분야(관광·축제·캐릭터 IP 등)와 연관된 내용을 제안해주세요.</div></div>
+          <div class="guide-item"><div class="guide-item-dot"></div><div>사진·도면·참고자료 등 첨부파일을 함께 제출하면 심사에 도움이 됩니다. (최대 10MB)</div></div>
+          <div class="guide-item"><div class="guide-item-dot"></div><div>팀 제안 시 대표자 1인을 지정하여 접수해주세요.</div></div>
+        </div>
+      </div>
+
+      <!-- 제외 대상 -->
+      <div class="guide-notice">
+        ⚠️ <strong>다음에 해당하는 제안은 심사에서 제외됩니다</strong><br>
+        · 이미 사업화되었거나 타 기관에 제안된 아이디어<br>
+        · 동일하거나 유사한 내용의 중복 제안<br>
+        · 대전관광공사 사업 범위와 무관한 내용<br>
+        · 특정 업체·개인의 홍보·광고성 내용
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════
+   사업화 사례 모달
+══════════════════════════════ -->
+<div class="case-overlay" id="caseModal">
+  <div class="case-modal">
+
+    <div class="case-modal-header">
+      <button class="case-modal-close" onclick="closeCaseModal()">×</button>
+      <h2>🏆 사업화 사례</h2>
+      <p>주민참여 아이디어 공모전을 통해 실제 사업화된 사례를 소개합니다</p>
+    </div>
+
+    <div class="case-modal-body">
+
+      <!-- 사례 1: 대전 빵축제 -->
+      <div class="case-card">
+        <div class="case-card-img">
+          <img src="img_1.png" style="width:100%; height:100%; object-fit:cover;">
+          <span class="case-badge">사업화 사례 01</span>
+        </div>
+        <div class="case-card-info">
+          <div class="case-card-title">대전 빵축제</div>
+          <div class="case-card-desc">
+            대전을 대표하는 빵 문화를 활용해 지역 베이커리 브랜드와 연계한 도시형 음식 축제 아이디어입니다.
+            성심당 등 대전의 유명 빵집과 협업하여 원도심 일대에서 방문객 유치 및 지역 경제 활성화를 이끌어낸 제안입니다.
+          </div>
+          <div class="case-card-tags">
+            <span class="case-tag"># 지역관광 활성화</span>
+            <span class="case-tag"># 원도심</span>
+            <span class="case-tag"># 로컬브랜드</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 사례 2: 꿈돌이 굿즈 개발 -->
+      <div class="case-card">
+        <div class="case-card-img">
+          <img src="img_2.png" style="width:100%; height:100%; object-fit:cover;">
+          <span class="case-badge">사업화 사례 02</span>
+        </div>
+        <div class="case-card-info">
+          <div class="case-card-title">꿈돌이 굿즈 개발</div>
+          <div class="case-card-desc">
+            대전관광공사 대표 캐릭터 꿈돌이를 활용한 관광 굿즈 라인업 개발 제안입니다.
+            엽서·에코백·마그넷 등 다양한 기념품을 통해 대전 방문의 추억을 남기고
+            캐릭터 IP 수익화와 도시 브랜드 가치를 확장한 제안입니다.
+          </div>
+          <div class="case-card-tags">
+            <span class="case-tag"># 꿈돌이IP 활용</span>
+            <span class="case-tag"># 굿즈개발</span>
+            <span class="case-tag"># 꿈돌이 이모티콘</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /case-modal-body -->
+  </div><!-- /case-modal -->
+</div><!-- /case-overlay -->
+
+
+<!-- ══════════════════════════════
+   FAQ 전체 모달
+══════════════════════════════ -->
+<div class="faq-modal-overlay" id="faqModal">
+  <div class="faq-modal">
+
+    <div class="faq-modal-header">
+      <button class="faq-modal-close" onclick="closeFaqModal()">×</button>
+      <h2>❓ 자주 묻는 질문 (FAQ)</h2>
+      <p>공모전 참여 전 꼭 확인해 주세요!</p>
+    </div>
+
+    <div class="faq-modal-body">
+
+      <!-- 참가자격 -->
+      <div class="faq-category-title">👤 참가자격</div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span class="faq-num">1</span><span>팀으로도 참가할 수 있나요?</span><span class="faq-plus">+</span></div>
+        <div class="faq-a">네, 개인 또는 팀 단위로 참가할 수 있습니다.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span class="faq-num">2</span><span>팀 구성원 수에 제한이 있나요?</span><span class="faq-plus">+</span></div>
+        <div class="faq-a">팀 구성원 수에 별도의 제한은 없습니다. 다만, 원활한 심사 및 운영을 위해 대표자 1인을 지정하여 접수해 주시기 바랍니다.</div>
+      </div>
+
+      <!-- 접수/제출 -->
+      <div class="faq-category-title">📋 접수/제출</div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span class="faq-num">3</span><span>아이디어가 이미 사업화된 내용도 참여 가능한가요?</span><span class="faq-plus">+</span></div>
+        <div class="faq-a">타 기관 또는 타 공모전에서 이미 사업화되었거나 수상한 아이디어는 심사 대상에서 제외될 수 있습니다.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span class="faq-num">4</span><span>여러 개 아이디어를 제출할 수 있나요?</span><span class="faq-plus">+</span></div>
+        <div class="faq-a">네, 1인(팀)당 제출 건수에 제한은 없으며, 아이디어별로 각각 접수해 주시기 바랍니다.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span class="faq-num">5</span><span>접수 후 수정할 수 있나요?</span><span class="faq-plus">+</span></div>
+        <div class="faq-a">접수 후 수정이 필요한 경우, 접수기간 내에 보완된 내용으로 다시 제출하시면 됩니다.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span class="faq-num">6</span><span>이전에 제안했던 아이디어도 제출 가능한가요?</span><span class="faq-plus">+</span></div>
+        <div class="faq-a">기존에 제안한 내용이라도 미채택되었거나 보완·발전된 내용인 경우 제출할 수 있습니다.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span class="faq-num">7</span><span>파일 형식 제한이 있나요?</span><span class="faq-plus">+</span></div>
+        <div class="faq-a">제안서 양식에 맞춰 작성해 주시기 바라며, 자세한 제출 형식은 공모전 안내를 참고해 주시기 바랍니다.</div>
+      </div>
+
+      <!-- 심사/시상 -->
+      <div class="faq-category-title">🏆 심사/시상</div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span class="faq-num">8</span><span>어떤 아이디어가 선정되나요?</span><span class="faq-plus">+</span></div>
+        <div class="faq-a">사업의 타당성 및 창의성, 효율성 및 효과성, 내용 충실도 등을 종합적으로 심사하여 대전 관광 발전에 기여할 수 있는 우수 아이디어를 선정합니다.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span class="faq-num">9</span><span>결과 발표는 어디서 확인하나요?</span><span class="faq-plus">+</span></div>
+        <div class="faq-a">최종 결과는 공모전 홈페이지를 통해 공고될 예정입니다.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span class="faq-num">10</span><span>제출한 아이디어의 권리는 어떻게 되나요?</span><span class="faq-plus">+</span></div>
+        <div class="faq-a">제출된 아이디어는 공모전 심사를 위해 활용되며, 향후 사업 추진 과정에서 활용될 수 있습니다. 세부 사항은 제안서 제출 시 안내되는 유의사항을 참고해 주시기 바랍니다.</div>
+      </div>
+
+      <!-- 기타 -->
+      <div class="faq-category-title">💬 기타</div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span class="faq-num">11</span><span>문의는 어디로 하면 되나요?</span><span class="faq-plus">+</span></div>
+        <div class="faq-a">홈페이지 문의하기 또는 담당자(042-250-1146)로 연락주시면 됩니다. (평일 09:00~18:00)</div>
+      </div>
+
+    </div><!-- /faq-modal-body -->
+  </div><!-- /faq-modal -->
+</div><!-- /faq-modal-overlay -->
+
+
+<!-- ══════════════════════════════
+   문의하기 모달
+══════════════════════════════ -->
+<div class="contact-overlay" id="contactModal">
+  <div class="contact-modal">
+
+    <!-- 헤더 -->
+    <div class="contact-modal-header">
+      <button class="contact-modal-close" onclick="closeContactModal()">×</button>
+      <h2>💬 1:1 문의하기</h2>
+      <p>문의 내용은 비밀번호로 보호되며 작성자만 확인할 수 있습니다</p>
+    </div>
+
+    <!-- 상단 탭: 문의하기 / 내 문의 조회 -->
+    <div class="contact-nav-tabs">
+      <div class="contact-nav-tab active" id="tabWrite" onclick="switchContactTab('write')">✏️ 문의 작성</div>
+      <div class="contact-nav-tab" id="tabView"  onclick="switchContactTab('view')">🔍 내 문의 조회</div>
+    </div>
+
+    <!-- ── 문의 작성 탭 ── -->
+    <div class="contact-modal-body" id="contactWritePanel">
+
+      <!-- 문의 유형 -->
+      <div class="contact-type-tabs">
+        <div class="contact-tab active" onclick="selectContactTab(this,'공모전 접수 문의')">📋 접수 문의</div>
+        <div class="contact-tab" onclick="selectContactTab(this,'기타 문의')">💬 기타</div>
+      </div>
+
+      <!-- 등록 완료 -->
+      <div class="contact-done" id="contactDone">
+        <div class="done-icon">✅</div>
+        <h3>문의가 등록되었습니다!</h3>
+        <p>답변은 <strong>'내 문의 조회'</strong> 탭에서 확인하실 수 있습니다.<br>등록하신 비밀번호를 꼭 기억해 주세요.</p>
+        <button onclick="resetContactForm()">확인</button>
+      </div>
+
+      <!-- 문의 폼 -->
+      <form id="contactForm">
+        <input type="hidden" name="contactType" id="contactTypeInput" value="공모전 접수 문의">
+
+        <div class="fm-form-row">
+          <div class="fm-form-group">
+            <label>이름 <span class="req">*</span></label>
+            <input type="text" name="cName" required placeholder="홍길동">
+          </div>
+          <div class="fm-form-group">
+            <label>연락처 <span class="req">*</span></label>
+            <input type="tel" name="cPhone" required placeholder="010-1234-5678">
+          </div>
+        </div>
+
+        <div class="fm-form-group">
+          <label>이메일 <span class="req">*</span></label>
+          <input type="email" name="cEmail" required placeholder="이메일 주소">
+        </div>
+
+        <div class="fm-form-group">
+          <label>문의 제목 <span class="req">*</span></label>
+          <input type="text" name="cTitle" required placeholder="문의 제목을 입력하세요">
+        </div>
+
+        <div class="fm-form-group">
+          <label>문의 내용 <span class="req">*</span></label>
+          <textarea name="cContent" required placeholder="문의 내용을 상세히 입력해 주세요."></textarea>
+        </div>
+
+        <div class="fm-form-group">
+          <label>비밀번호 <span class="req">*</span></label>
+          <input type="password" name="cPassword" required placeholder="비밀번호 (영문·숫자 자유롭게)">
+          <div class="pw-hint">🔒 내 문의 조회 시 사용할 비밀번호입니다</div>
+        </div>
+
+        <div class="contact-privacy">
+          <input type="checkbox" id="contactPrivacy" required>
+          <label for="contactPrivacy">개인정보(이름·연락처·이메일) 수집·이용에 동의합니다. 수집된 정보는 문의 답변 목적으로만 사용되며 1년 이내 파기됩니다.</label>
+        </div>
+
+        <button type="submit" class="contact-submit-btn">문의 등록하기 ✉️</button>
+      </form>
+
+    </div><!-- /contactWritePanel -->
+
+    <!-- ── 내 문의 조회 탭 ── -->
+    <div class="contact-modal-body inquiry-view" id="contactViewPanel">
+
+      <!-- 비밀번호 입력 -->
+      <div id="inquiryPwBox" class="inquiry-pw-box">
+        <div class="pw-icon">🔐</div>
+        <h3>문의 내용 확인</h3>
+        <p>등록하신 <strong>이름</strong>과 <strong>비밀번호</strong>를 입력하시면<br>문의 내용과 답변을 확인할 수 있습니다.</p>
+        <div style="max-width:320px; margin:0 auto 10px;">
+          <input type="text" id="inquiryName" placeholder="이름" style="width:100%;padding:10px 14px;border:2px solid #d4edba;border-radius:10px;font-size:14px;outline:none;margin-bottom:8px;box-sizing:border-box;">
+          <div class="inquiry-pw-row">
+            <input type="password" id="inquiryPwInput" placeholder="비밀번호">
+            <button onclick="searchInquiry()">조회</button>
+          </div>
+        </div>
+        <div class="pw-error" id="pwError">이름 또는 비밀번호가 일치하지 않습니다.</div>
+        <div class="pw-error" id="adminNotice" style="color:#164d22; display:none;">관리자 모드로 접속되었습니다.</div>
+      </div>
+
+      <!-- 문의 목록 (여러 건일 때) -->
+      <div id="inquiryListPanel" style="display:none;">
+        <button class="inquiry-list-back" onclick="backToSearch()">← 다시 조회하기</button>
+        <div class="inquiry-list-title" id="inquiryListTitle"></div>
+        <div class="inquiry-list" id="inquiryListItems"></div>
+      </div>
+
+      <!-- 문의 상세 -->
+      <div id="inquiryDetail" class="inquiry-detail">
+        <button class="back-btn" onclick="backFromDetail()">← 뒤로 가기</button>
+
+        <!-- 문의 내용 카드 -->
+        <div class="inquiry-card">
+          <div class="inquiry-card-header">
+            <span class="i-type" id="detailType"></span>
+            <span class="i-date" id="detailDate"></span>
+          </div>
+          <div class="inquiry-card-title" id="detailTitle"></div>
+          <div class="inquiry-card-meta" id="detailMeta"></div>
+          <div class="inquiry-card-body" id="detailContent"></div>
+        </div>
+
+        <!-- 답글 영역 -->
+        <div class="reply-section">
+          <div id="replyBox"></div>
+
+          <!-- 관리자 답글 작성 폼 (관리자만 표시) -->
+          <div class="admin-reply-form" id="adminReplyForm" style="display:none;">
+            <textarea id="adminReplyText" placeholder="답글을 입력하세요..."></textarea>
+            <button class="admin-reply-btn" onclick="submitReply()">답글 등록</button>
+            <div style="clear:both;"></div>
+          </div>
+        </div>
+
+      </div><!-- /inquiryDetail -->
+
+    </div><!-- /contactViewPanel -->
+
+  </div><!-- /contact-modal -->
+</div><!-- /contact-overlay -->
+
+
+<!-- ══════════════════════════════
+   열린제안(상시) 폼 모달
+══════════════════════════════ -->
+<div class="form-modal-overlay" id="openProposalModalOverlay">
+  <div class="form-modal" style="max-width:820px;">
+    <div class="form-modal-header" style="background: linear-gradient(135deg, #5a8a00, #7ab020);">
+      <button class="form-modal-close" onclick="closeOpenProposalModal()">×</button>
+      <h2>💬 열린제안 접수</h2>
+      <p>공모전과 무관하게 언제든지 아이디어를 제안해 주세요!</p>
+    </div>
+    <div class="form-modal-body olive-form">
+      <form id="openProposalForm">
+
+        <!-- 제안자 정보 -->
+        <div class="fm-section-title">👤 제안자 정보</div>
+
+        <div class="fm-form-row">
+          <div class="fm-form-group">
+            <label>이름 <span class="req">*</span></label>
+            <input type="text" name="name" required placeholder="홍길동">
+          </div>
+          <div class="fm-form-group">
+            <label>연락처 <span class="req">*</span></label>
+            <input type="tel" name="phone" required placeholder="010-1234-5678">
+          </div>
+        </div>
+
+        <div class="fm-form-row">
+          <div class="fm-form-group">
+            <label>이메일 <span class="req">*</span></label>
+            <input type="email" name="email" required placeholder="example@email.com">
+          </div>
+          <div class="fm-form-group">
+            <label>거주지역 <span class="req">*</span></label>
+            <select name="district" required>
+              <option value="">선택하세요</option>
+              <option value="동구">동구</option>
+              <option value="중구">중구</option>
+              <option value="서구">서구</option>
+              <option value="유성구">유성구</option>
+              <option value="대덕구">대덕구</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 제안 내용 -->
+        <div class="fm-section-title">💡 제안 내용</div>
+
+        <div class="fm-form-group">
+          <label>제안 분야 <span class="req">*</span></label>
+          <select name="category" required>
+            <option value="">선택하세요</option>
+            <option value="공사 주요 사업분야">공사 주요 사업분야</option>
+            <option value="지역문제 해결">지역문제 해결</option>
+            <option value="ESG·친환경 관광">ESG·친환경 관광</option>
+            <option value="기타 제안">기타 제안</option>
+          </select>
+        </div>
+
+        <div class="fm-form-group">
+          <label>제안 제목 <span class="req">*</span></label>
+          <input type="text" name="title" required placeholder="제안하실 아이디어 제목을 입력하세요">
+        </div>
+
+        <div class="fm-form-group">
+          <label>제안 내용 <span class="req">*</span></label>
+          <textarea name="content" required placeholder="아이디어에 대한 구체적인 내용을 작성해주세요.
+
+- 현황 및 문제점
+- 제안 내용
+- 실행 방안 등"></textarea>
+        </div>
+
+        <div class="fm-form-group">
+          <label>기대 효과 <span class="req">*</span></label>
+          <textarea name="effect" required placeholder="이 아이디어가 실현되었을 때 기대되는 효과를 작성해주세요." style="min-height:90px;"></textarea>
+        </div>
+
+        <div class="fm-form-group">
+          <label>첨부파일</label>
+          <div class="fm-file-upload" id="opFileUpload">
+            <input type="file" id="opFileInput" accept=".jpg,.jpeg,.png,.gif,.pdf,.hwp,.hwpx,.doc,.docx,.xlsx">
+            <div class="up-icon">📁</div>
+            <div class="up-text">클릭하여 파일 선택</div>
+            <div class="up-sub">이미지, PDF, 한글, 엑셀 파일 첨부 가능 (최대 10MB)</div>
+            <div class="up-name" id="opFileName"></div>
+          </div>
+          <div class="fm-file-info">• 허용형식 : JPG, PNG, PDF, HWP, XLSX 등 (최대 10MB)</div>
+        </div>
+
+        <!-- 개인정보 동의 -->
+        <div class="fm-privacy-section">
+          <div class="fm-privacy-header">
+            <h3>📋 개인정보 수집·이용 동의</h3>
+            <button type="button" class="fm-privacy-btn" onclick="openPrivacyFull()">동의서 전문 보기</button>
+          </div>
+          <div class="fm-checkbox-group">
+            <input type="checkbox" id="opPrivacyAgree" name="privacyAgree" required>
+            <label for="opPrivacyAgree">개인정보 수집·이용에 동의합니다. <span class="req" style="color:#e74c3c;">*</span></label>
+          </div>
+        </div>
+
+        <div class="fm-privacy-section">
+          <div class="fm-privacy-header">
+            <h3>📋 지식재산권 귀속 및 활용 동의</h3>
+            <button type="button" class="fm-privacy-btn" onclick="openIpFull()">동의서 전문 보기</button>
+          </div>
+          <div class="fm-checkbox-group">
+            <input type="checkbox" id="opIpAgree" name="ipAgree" required>
+            <label for="opIpAgree">지식재산권 귀속 및 활용 조건에 동의합니다. <span class="req" style="color:#e74c3c;">*</span></label>
+          </div>
+        </div>
+
+        <button type="submit" class="fm-submit-btn" style="background: linear-gradient(135deg, #5a8a00, #7ab020);">제안서 접수하기</button>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+   정기공모 제안서 접수 폼 모달
+══════════════════════════════ -->
+<div class="form-modal-overlay" id="formModalOverlay">
+  <div class="form-modal">
+
+    <!-- 헤더 -->
+    <div class="form-modal-header">
+      <button class="form-modal-close" onclick="closeFormModal()">×</button>
+      <h2>📋 정기공모 제안서 접수</h2>
+      <p>2026 대전관광공사 주민참여 아이디어 공모전</p>
+    </div>
+
+    <!-- 바디 -->
+    <div class="form-modal-body">
+
+      <!-- 진행 단계 표시 -->
+      <form id="proposalForm">
+
+        <!-- 제안자 정보 -->
+        <div class="fm-section-title">👤 제안자 정보</div>
+
+        <div class="fm-form-row">
+          <div class="fm-form-group">
+            <label>이름 <span class="req">*</span></label>
+            <input type="text" name="name" required placeholder="홍길동">
+          </div>
+          <div class="fm-form-group">
+            <label>연락처 <span class="req">*</span></label>
+            <input type="tel" name="phone" required placeholder="010-1234-5678">
+          </div>
+        </div>
+
+        <div class="fm-form-row">
+          <div class="fm-form-group">
+            <label>이메일 <span class="req">*</span></label>
+            <input type="email" name="email" required placeholder="example@email.com">
+          </div>
+          <div class="fm-form-group">
+            <label>거주지역 <span class="req">*</span></label>
+            <select name="district" required>
+              <option value="">선택하세요</option>
+              <option value="동구">동구</option>
+              <option value="중구">중구</option>
+              <option value="서구">서구</option>
+              <option value="유성구">유성구</option>
+              <option value="대덕구">대덕구</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 제안 내용 -->
+        <div class="fm-section-title">💡 제안 내용</div>
+
+        <div class="fm-form-group">
+          <label>제안 분야 <span class="req">*</span></label>
+          <select name="category" required>
+            <option value="">선택하세요</option>
+            <option value="관광콘텐츠">관광콘텐츠</option>
+            <option value="꿈돌이 IP 활용">꿈돌이 IP 활용</option>
+            <option value="지역상권 연계">지역상권 연계</option>
+            <option value="친환경 관광">친환경 관광</option>
+            <option value="관광 편의 개선">관광 편의 개선</option>
+          </select>
+        </div>
+
+        <div class="fm-form-group">
+          <label>제안 제목 <span class="req">*</span></label>
+          <input type="text" name="title" required placeholder="제안하실 아이디어 제목을 입력하세요">
+        </div>
+
+        <div class="fm-form-group">
+          <label>제안 내용 <span class="req">*</span></label>
+          <textarea name="content" required placeholder="아이디어에 대한 구체적인 내용을 작성해주세요.
+
+- 현황 및 문제점
+- 제안 내용
+- 실행 방안 등"></textarea>
+        </div>
+
+        <div class="fm-form-group">
+          <label>기대 효과 <span class="req">*</span></label>
+          <textarea name="effect" required placeholder="이 아이디어가 실현되었을 때 기대되는 효과를 작성해주세요." style="min-height:90px;"></textarea>
+        </div>
+
+        <div class="fm-form-group">
+          <label>첨부파일</label>
+          <div class="fm-file-upload" id="fmFileUpload">
+            <input type="file" id="fmFileInput" accept=".jpg,.jpeg,.png,.gif,.pdf,.hwp,.hwpx,.doc,.docx,.xlsx">
+            <div class="up-icon">📁</div>
+            <div class="up-text">클릭하여 파일 선택</div>
+            <div class="up-sub">이미지, PDF, 한글, 엑셀 파일 첨부 가능 (최대 10MB)</div>
+            <div class="up-name" id="fmFileName"></div>
+          </div>
+          <div class="fm-file-info">• 허용형식 : JPG, PNG, PDF, HWP, XLSX 등 (최대 10MB)</div>
+        </div>
+
+        <!-- 개인정보 동의 -->
+        <div class="fm-privacy-section">
+          <div class="fm-privacy-header">
+            <h3>📋 개인정보 수집·이용 동의</h3>
+            <button type="button" class="fm-privacy-btn" onclick="openPrivacyFull()">동의서 전문 보기</button>
+          </div>
+          <div class="fm-checkbox-group">
+            <input type="checkbox" id="fmPrivacyAgree" name="privacyAgree" required>
+            <label for="fmPrivacyAgree">개인정보 수집·이용에 동의합니다. <span class="req" style="color:#e74c3c;">*</span></label>
+          </div>
+        </div>
+
+        <div class="fm-privacy-section">
+          <div class="fm-privacy-header">
+            <h3>📋 지식재산권 귀속 및 활용 동의</h3>
+            <button type="button" class="fm-privacy-btn" onclick="openIpFull()">동의서 전문 보기</button>
+          </div>
+          <div class="fm-checkbox-group">
+            <input type="checkbox" id="fmIpAgree" name="ipAgree" required>
+            <label for="fmIpAgree">지식재산권 귀속 및 활용 조건에 동의합니다. <span class="req" style="color:#e74c3c;">*</span></label>
+          </div>
+        </div>
+
+        <button type="submit" class="fm-submit-btn">제안서 접수하기</button>
+
+      </form>
+    </div><!-- /form-modal-body -->
+  </div><!-- /form-modal -->
+</div><!-- /form-modal-overlay -->
+
+
+<!-- ══ 개인정보 전문 모달 ══ -->
+<div class="privacy-full-overlay" id="privacyFullOverlay">
+  <div class="privacy-full-modal">
+    <button class="pfm-close" onclick="closePrivacyFull()">×</button>
+    <h2>📋 개인정보 수집·이용 동의서</h2>
+    <h4>1. 수집 항목</h4>
+    <ul><li>필수: 이름, 연락처, 이메일, 거주지역</li></ul>
+    <h4>2. 수집 목적</h4>
+    <ul>
+      <li>공모전 접수 및 심사</li>
+      <li>결과 안내 및 시상</li>
+      <li>관련 문의사항 응대</li>
+    </ul>
+    <h4>3. 보유 기간</h4>
+    <ul><li>공모전 종료 후 1년간 보유 후 파기</li></ul>
+    <h4>4. 동의 거부권</h4>
+    <ul>
+      <li>개인정보 수집·이용에 대한 동의를 거부할 권리가 있습니다.</li>
+      <li>다만, 동의 거부 시 공모전 참가가 제한됩니다.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══ 지식재산권 전문 모달 ══ -->
+<div class="privacy-full-overlay" id="ipFullOverlay">
+  <div class="privacy-full-modal">
+    <button class="pfm-close" onclick="closeIpFull()">×</button>
+    <h2>📋 지식재산권 귀속 및 활용 동의서</h2>
+    <h4>1. 저작권의 귀속</h4>
+    <ul>
+      <li>공모전에 출품된 응모작의 저작권(저작재산권 및 저작인격권)은 창작자인 응모자에게 원칙적으로 귀속됩니다.</li>
+      <li>다만, 수상작에 한하여 주최 측은 공모전의 홍보, 전시, 결과물 제작(자료집, 웹사이트, SNS 게시 등) 등 비영리·공익적 목적 범위 내에서 이를 복제, 배포, 전송 및 일부 편집하여 활용할 수 있습니다.</li>
+    </ul>
+    <h4>2. 미수상 응모작의 활용</h4>
+    <ul>
+      <li>미수상(낙선) 응모작의 저작권은 응모자에게 귀속되며, 주최 측은 응모자의 사전 동의 없이 이를 사용하거나 공개할 수 없습니다.</li>
+      <li>다만, 제출된 응모작 중 일부는 정책 및 사업 아이디어 참고자료로 활용될 수 있으며, 이 경우 해당 응모자에게 개별적으로 사전 안내 및 동의를 받은 후 활용합니다.</li>
+    </ul>
+    <h4>3. 출품작의 책임 및 권리 보장</h4>
+    <ul>
+      <li>응모작은 응모자 본인의 순수 창작물이어야 하며, 타인의 저작권, 초상권, 특허권 등 지식재산권을 침해해서는 안 됩니다.</li>
+      <li>출품작과 관련하여 제3자의 지식재산권 침해 및 기타 분쟁이 발생할 경우, 이에 대한 책임은 출품자에게 있습니다.</li>
+      <li>해당 사실이 확인될 경우 심사에서 제외되며, 수상 이후라도 수상이 취소되고 상금은 환수될 수 있습니다.</li>
+    </ul>
+    <h4>4. 동의 및 참가 제한</h4>
+    <ul>
+      <li>응모자는 본 지식재산권 귀속 및 활용 조건에 동의하지 않을 권리가 있습니다.</li>
+      <li>다만, 본 동의는 공모전 운영 및 심사에 필수적인 사항이므로 동의하지 않을 경우 공모전 참가 및 심사가 제한될 수 있습니다.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+   대전관광 수다TALK 모달
+══════════════════════════════ -->
+<div class="voice-overlay" id="voiceModal">
+  <div class="voice-modal">
+    <div class="voice-modal-header">
+      <button class="voice-modal-close" onclick="closeVoiceModal()">×</button>
+      <h2>💬 대전관광 <span class="suda-talk">수다TALK</span></h2>
+      <p>대전 관광에 대한 자유로운 의견을 남겨주세요. 익명으로 작성됩니다.</p>
+    </div>
+    <div class="voice-modal-body">
+
+      <!-- 글쓰기 폼 -->
+      <div class="voice-write-form">
+        <h3>✏️ 글 작성하기</h3>
+        <div style="display:flex; gap:8px; margin-bottom:8px;">
+          <input class="voice-input" id="voiceNick" placeholder="닉네임 (익명 가능)" maxlength="20" style="flex:1;">
+          <input class="voice-input" id="voicePw" type="password" placeholder="비밀번호 (수정/삭제용)" maxlength="20" style="flex:1;">
+        </div>
+        <textarea class="voice-textarea" id="voiceContent" placeholder="대전 여행 경험과 추천하고 싶은 관광 아이디어를 자유롭게 이야기해주세요." maxlength="500"></textarea>
+        <button class="voice-submit-btn" onclick="submitVoice()">등록하기</button>
+      </div>
+
+      <!-- 글 목록 -->
+      <div id="voiceList" class="voice-list">
+        <div class="voice-loading">불러오는 중...</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ 비밀번호 확인 모달 (수정/삭제용) ══ -->
+<div class="voice-pw-overlay" id="voicePwOverlay">
+  <div class="voice-pw-modal">
+    <h4 id="voicePwTitle">비밀번호 확인</h4>
+    <p id="voicePwDesc">작성 시 입력한 비밀번호를 입력하세요.</p>
+    <input class="voice-pw-input" id="voicePwInputModal" type="password" placeholder="비밀번호" maxlength="20">
+    <div class="voice-pw-error" id="voicePwError">비밀번호가 올바르지 않습니다.</div>
+    <div class="voice-pw-actions">
+      <button class="voice-pw-confirm-btn" onclick="voicePwConfirm()">확인</button>
+      <button class="voice-pw-cancel-btn" onclick="closeVoicePwModal()">취소</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 성공 모달 ══ -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-modal">
+    <div class="s-icon">🎉</div>
+    <h2>접수가 완료되었습니다!</h2>
+    <p>소중한 아이디어를 제안해 주셔서 감사합니다.<br>심사 후 결과를 안내해 드리겠습니다.</p>
+    <button onclick="closeSuccessModal()">확인</button>
+  </div>
+</div>
+
+<!-- ══ 로딩 ══ -->
+<div class="fm-loading" id="fmLoading">
+  <div class="spinner"></div>
+  <p>제안서를 접수 중입니다...</p>
+</div>
+
+
+<script>
+/* ─────────────────────────────
+   카운트다운
+───────────────────────────── */
+const deadline = new Date('2026-08-31T18:00:00');
+
+function pad(n) { return String(n).padStart(2, '0'); }
+
+function updateDday() {
+  const now = new Date();
+  const diffMs = deadline - now;
+  const ddayEl = document.querySelector('.dday');
+  if (!ddayEl) return;
+  if (diffMs <= 0) { ddayEl.textContent = 'D+0 마감'; return; }
+  const days = Math.ceil(diffMs / 86400000);
+  ddayEl.textContent = 'D-' + days;
+}
+
+function tick() {
+  const diff = deadline - new Date();
+  if (diff <= 0) {
+    ['days','hours','minutes','seconds'].forEach(id => document.getElementById(id).textContent = '00');
+    updateDday(); return;
+  }
+  document.getElementById('days').textContent    = pad(Math.floor(diff / 86400000));
+  document.getElementById('hours').textContent   = pad(Math.floor((diff % 86400000) / 3600000));
+  document.getElementById('minutes').textContent = pad(Math.floor((diff % 3600000) / 60000));
+  document.getElementById('seconds').textContent = pad(Math.floor((diff % 60000) / 1000));
+}
+
+updateDday();
+tick();
+setInterval(tick, 1000);
+
+
+/* ─────────────────────────────
+   FAQ
+───────────────────────────── */
+function toggleFaq(el) {
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+
+/* ─────────────────────────────
+   참여하기 드롭다운
+───────────────────────────── */
+function toggleJoin() {
+  document.getElementById('joinWrap').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  const wrap = document.getElementById('joinWrap');
+  if (wrap && !wrap.contains(e.target)) wrap.classList.remove('open');
+});
+
+/* ─────────────────────────────
+   공모전 소개 모달
+───────────────────────────── */
+function openModal() {
+  document.getElementById('introModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('introModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('introModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+/* ─────────────────────────────
+   선정절차 모달
+───────────────────────────── */
+function openProcModal() {
+  document.getElementById('procModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeProcModal() {
+  document.getElementById('procModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('procModal').addEventListener('click', function(e) {
+  if (e.target === this) closeProcModal();
+});
+
+/* ─────────────────────────────
+   작성 가이드라인 모달
+───────────────────────────── */
+function openGuideModal() {
+  document.getElementById('guideModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeGuideModal() {
+  document.getElementById('guideModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('guideModal').addEventListener('click', function(e) {
+  if (e.target === this) closeGuideModal();
+});
+
+
+/* ─────────────────────────────
+   사업화 사례 모달
+───────────────────────────── */
+function openCaseModal() {
+  document.getElementById('caseModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeCaseModal() {
+  document.getElementById('caseModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('caseModal').addEventListener('click', function(e) {
+  if (e.target === this) closeCaseModal();
+});
+
+/* ─────────────────────────────
+   이전 우수사례 슬라이드
+───────────────────────────── */
+let currentSlide = 0;
+const totalSlides = 2;
+
+function goSlide(idx) {
+  currentSlide = idx;
+  document.getElementById('prevSlides').style.transform = `translateX(-${idx * 100}%)`;
+  document.querySelectorAll('.prev-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+}
+
+// 3초마다 자동 슬라이드
+setInterval(() => goSlide((currentSlide + 1) % totalSlides), 3000);
+
+// 슬라이드 클릭 시 모달 열기
+document.getElementById('prevSlides').addEventListener('click', () => openCaseModal());
+
+/* ─────────────────────────────
+   FAQ 전체 모달
+───────────────────────────── */
+function openFaqModal() {
+  document.getElementById('faqModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeFaqModal() {
+  document.getElementById('faqModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('faqModal').addEventListener('click', function(e) {
+  if (e.target === this) closeFaqModal();
+});
+
+/* ─────────────────────────────
+   문의하기 모달
+───────────────────────────── */
+const CONTACT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwR_3GWfWuGN2l5QDh2DN3Rs-fuSjfgQaXq-cER9kV_OubdI51LlQSO_JceSo93Nd-A/exec';
+const ADMIN_PASSWORD = '';
+
+function openContactModal() {
+  document.getElementById('contactModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeContactModal() {
+  document.getElementById('contactModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('contactModal').addEventListener('click', function(e) {
+  if (e.target === this) closeContactModal();
+});
+
+// 탭 전환 (작성 / 조회)
+function switchContactTab(tab) {
+  document.getElementById('tabWrite').classList.toggle('active', tab === 'write');
+  document.getElementById('tabView').classList.toggle('active',  tab === 'view');
+  document.getElementById('contactWritePanel').style.display = tab === 'write' ? '' : 'none';
+  document.getElementById('contactViewPanel').classList.toggle('show', tab === 'view');
+}
+
+// 문의 유형 탭
+function selectContactTab(el, type) {
+  document.querySelectorAll('.contact-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('contactTypeInput').value = type;
+}
+
+// 폼 초기화
+function resetContactForm() {
+  document.getElementById('contactDone').classList.remove('show');
+  document.getElementById('contactForm').style.display = '';
+  document.getElementById('contactForm').reset();
+  document.querySelectorAll('.contact-tab').forEach((t, i) => t.classList.toggle('active', i === 0));
+  document.getElementById('contactTypeInput').value = '공모전 접수 문의';
+}
+
+// 문의 등록
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('.contact-submit-btn');
+  btn.disabled = true; btn.textContent = '등록 중...';
+
+  const formData = new FormData(this);
+  const pw = formData.get('cPassword');
+
+  // 비밀번호 간단 해시 (실제 서비스엔 더 강한 방식 권장)
+  const pwHash = btoa(pw + '_djto2026');
+
+  const data = {
+    type        : 'contact',
+    contactType : formData.get('contactType'),
+    name        : formData.get('cName'),
+    phone       : formData.get('cPhone'),
+    email       : formData.get('cEmail'),
+    title       : formData.get('cTitle'),
+    content     : formData.get('cContent'),
+    pwHash      : pwHash,
+    reply       : '',
+    submitAt    : new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })
+  };
+
+  try {
+    await fetch(CONTACT_SCRIPT_URL, {
+      method: 'POST', headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(data)
+    });
+    this.style.display = 'none';
+    document.getElementById('contactDone').classList.add('show');
+  } catch (err) {
+    btn.disabled = false; btn.textContent = '문의 등록하기 ✉️';
+    alert('오류가 발생했습니다. 문의하기를 통해 연락해 주세요.');
+  }
+});
+
+// 문의 조회
+async function searchInquiry() {
+  const name  = document.getElementById('inquiryName').value.trim();
+  const pw    = document.getElementById('inquiryPwInput').value.trim();
+  const errEl = document.getElementById('pwError');
+  const adminNotice = document.getElementById('adminNotice');
+
+  errEl.classList.remove('show');
+  adminNotice.style.display = 'none';
+
+  if (!name || !pw) { errEl.textContent = '이름과 비밀번호를 모두 입력해 주세요.'; errEl.classList.add('show'); return; }
+
+  const isAdmin = (pw === ADMIN_PASSWORD);
+  const pwHash  = btoa(pw + '_djto2026');
+
+  try {
+    const res  = await fetch(CONTACT_SCRIPT_URL + '?action=getInquiry&name=' + encodeURIComponent(name) + '&pwHash=' + encodeURIComponent(isAdmin ? '__admin__' : pwHash) + '&isAdmin=' + isAdmin);
+    const json = await res.json();
+
+    if (!json || json.result === 'notfound') {
+      errEl.textContent = '이름 또는 비밀번호가 일치하지 않습니다.';
+      errEl.classList.add('show'); return;
+    }
+
+    if (isAdmin) adminNotice.style.display = 'block';
+
+    // 여러 건이면 목록, 1건이면 바로 상세
+    const items = Array.isArray(json.items) ? json.items : [json];
+
+    if (items.length > 1) {
+      showInquiryList(items, isAdmin);
+    } else {
+      showInquiryDetail(items[0], isAdmin);
+    }
+
+  } catch (err) {
+    errEl.textContent = '조회 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.';
+    errEl.classList.add('show');
+  }
+}
+
+// 목록 표시
+function showInquiryList(items, isAdmin) {
+  document.getElementById('inquiryPwBox').style.display = 'none';
+  document.getElementById('inquiryListPanel').style.display = '';
+  document.getElementById('inquiryDetail').classList.remove('show');
+
+  document.getElementById('inquiryListTitle').textContent = `조회된 문의 ${items.length}건 — 확인할 문의를 선택하세요`;
+
+  const listEl = document.getElementById('inquiryListItems');
+  listEl.innerHTML = items.map((item, idx) => `
+    <div class="inquiry-list-item" onclick="showInquiryDetail(window._inquiryItems[${idx}], ${isAdmin})">
+      <div class="inquiry-list-item-left">
+        <div class="inquiry-list-item-type">${item.contactType || '문의'}</div>
+        <div class="inquiry-list-item-title">${escHtml(item.title || '')}</div>
+        <div class="inquiry-list-item-date">📅 ${item.submitAt || ''}</div>
+      </div>
+      <div class="inquiry-list-item-right">
+        <span class="inquiry-reply-badge ${item.reply ? 'answered' : 'waiting'}">
+          ${item.reply ? '✅ 답변완료' : '⏳ 답변대기'}
+        </span>
+      </div>
+    </div>
+  `).join('');
+
+  window._inquiryItems = items; // 전역 저장
+  window._inquiryIsAdmin = isAdmin;
+}
+
+// 상세 표시
+function showInquiryDetail(json, isAdmin) {
+  document.getElementById('inquiryPwBox').style.display = 'none';
+  document.getElementById('inquiryListPanel').style.display = 'none';
+  document.getElementById('inquiryDetail').classList.add('show');
+
+  document.getElementById('detailType').textContent    = json.contactType || '문의';
+  document.getElementById('detailDate').textContent    = json.submitAt    || '';
+  document.getElementById('detailTitle').textContent   = json.title       || '';
+  document.getElementById('detailMeta').textContent    = '작성자: ' + json.name + '  |  연락처: ' + json.phone;
+  document.getElementById('detailContent').textContent = json.content     || '';
+
+  const replyBox = document.getElementById('replyBox');
+  if (json.reply && json.reply.trim()) {
+    replyBox.innerHTML = `
+      <div class="reply-box">
+        <div class="reply-header"><span>💬 관리자 답변</span></div>
+        <div class="reply-body">${escHtml(json.reply)}</div>
+        <div class="reply-date">${json.replyAt || ''}</div>
+      </div>`;
+  } else {
+    replyBox.innerHTML = '<div class="no-reply">💬 아직 답변이 등록되지 않았습니다.<br>평일 기준 1~2 영업일 내 답변 드립니다.</div>';
+  }
+
+  const adminForm = document.getElementById('adminReplyForm');
+  if (isAdmin) {
+    adminForm.style.display = '';
+    adminForm.dataset.rowIndex = json.rowIndex;
+  } else {
+    adminForm.style.display = 'none';
+  }
+}
+
+// HTML 이스케이프
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+
+/* ─────────────────────────────
+   대전관광 수다TALK
+───────────────────────────── */
+const VOICE_SCRIPT_URL = CONTACT_SCRIPT_URL;
+
+const nickAdj = ['씩씩한','활발한','귀여운','용감한','따뜻한','엉뚱한','신나는','느긋한','영리한','수줍은','다정한','유쾌한','진지한','재빠른','포근한','반짝이는','날렵한','꼼꼼한','당찬','설레는'];
+const nickAnimal = ['고양이','강아지','토끼','펭귄','여우','곰','다람쥐','코알라','수달','미어캣','햄스터','판다','기린','돌고래','부엉이','너구리','고슴도치','라마','카피바라','알파카'];
+function randomNick() {
+  const a = nickAdj[Math.floor(Math.random()*nickAdj.length)];
+  const b = nickAnimal[Math.floor(Math.random()*nickAnimal.length)];
+  return a + ' ' + b;
+}
+
+function openVoiceModal() {
+  document.getElementById('voiceModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  const nickEl = document.getElementById('voiceNick');
+  if (nickEl && !nickEl.value) nickEl.value = randomNick();
+  loadVoicePosts();
+}
+function closeVoiceModal() {
+  document.getElementById('voiceModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('voiceModal').addEventListener('click', function(e) {
+  if (e.target === this) closeVoiceModal();
+});
+
+async function loadVoicePosts() {
+  const listEl = document.getElementById('voiceList');
+  listEl.innerHTML = '<div class="voice-loading"><div>잠시만 기다려 주세요 ☺️</div><div class="voice-loading-bar-wrap"><div class="voice-loading-bar"></div></div><div style="color:#aaa;font-size:12px;">불러오는 중...</div></div>';
+  try {
+    const res = await fetch(VOICE_SCRIPT_URL + '?action=getVoice');
+    const data = await res.json();
+    const posts = Array.isArray(data) ? data : [];
+    if (posts.length === 0) {
+      listEl.innerHTML = '<div class="voice-list-empty">아직 작성된 글이 없습니다.<br>첫 번째 의견을 남겨보세요! 💬</div>';
+      return;
+    }
+    listEl.innerHTML = posts.reverse().map((p, i) => {
+      // 클린봇 삭제 여부 확인
+      if (p.deletedByAdmin) {
+        return '';
+      }
+      const rowIdx = escHtml(p.rowIndex || i);
+      const comments = (p.comments || []).map((c, ci) => `
+        <div class="voice-comment" id="cmt-${i}-${ci}">
+          <div class="voice-comment-left">
+            <span class="voice-comment-nick">${escHtml(c.nick || '익명')}</span>
+            <span>${escHtml(c.text || '')}</span>
+          </div>
+          <div class="voice-comment-right">
+            <span class="voice-comment-date">${c.date || ''}</span>
+            <span class="voice-comment-actions">
+              <button class="voice-cmt-action-btn voice-cmt-edit-btn" onclick="askEditComment(${i}, ${ci}, '${rowIdx}')">✏️ 수정</button>
+              <button class="voice-cmt-action-btn voice-cmt-delete-btn" onclick="askDeleteComment(${i}, ${ci}, '${rowIdx}')">🗑️ 삭제</button>
+            </span>
+          </div>
+        </div>`).join('');
+      return `
+      <div class="voice-post" id="vpost-${i}">
+        <div class="voice-post-top">
+          <div class="voice-post-top-left">
+            <span class="voice-post-nick">🙋 ${escHtml(p.nick || '익명')}</span>
+            <div class="voice-post-content" id="vcontent-${i}">${escHtml(p.content || '')}</div>
+          </div>
+          <div class="voice-post-top-right">
+            <span class="voice-post-date">${p.date || ''}</span>
+            <div class="voice-post-actions">
+              <button class="voice-action-btn voice-edit-btn" onclick="askEditPost(${i}, '${rowIdx}')">✏️ 수정</button>
+              <button class="voice-action-btn voice-delete-btn" onclick="askDeletePost(${i}, '${rowIdx}')">🗑️ 삭제</button>
+            </div>
+          </div>
+        </div>
+        <div class="voice-edit-form" id="veditform-${i}">
+          <textarea id="vedittext-${i}">${escHtml(p.content || '')}</textarea>
+          <div class="voice-edit-actions">
+            <button class="voice-edit-cancel-btn" onclick="cancelEditPost(${i})">취소</button>
+            <button class="voice-edit-save-btn" onclick="saveEditPost(${i}, '${rowIdx}')">저장</button>
+          </div>
+        </div>
+        <div class="voice-comment-list" id="cmtList-${i}">${comments}</div>
+        <div class="voice-comment-form" style="flex-wrap:wrap;gap:6px;">
+          <input class="voice-input voice-comment-nick-input" id="cmtNick-${i}" placeholder="닉네임">
+          <input class="voice-input" id="cmtPw-${i}" type="password" placeholder="비밀번호" maxlength="20" style="width:100px;flex-shrink:0;">
+          <input class="voice-input voice-comment-text-input" id="cmtText-${i}" placeholder="댓글 달기..." maxlength="200">
+          <button class="voice-comment-btn" onclick="submitComment(${i}, '${rowIdx}')">등록</button>
+        </div>
+      </div>`;
+    }).join('');
+  } catch(e) {
+    listEl.innerHTML = '<div class="voice-list-empty">불러오기 실패. 잠시 후 다시 시도해주세요.</div>';
+  }
+}
+
+async function submitVoice() {
+  const nick    = document.getElementById('voiceNick').value.trim() || '익명';
+  const pw      = document.getElementById('voicePw').value.trim();
+  const content = document.getElementById('voiceContent').value.trim();
+  if (!content) { alert('내용을 입력해주세요.'); return; }
+
+  const btn = document.querySelector('.voice-submit-btn');
+  btn.disabled = true; btn.textContent = '등록 중...';
+
+  try {
+    await fetch(VOICE_SCRIPT_URL, {
+      method: 'POST', headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({
+        type: 'voice', nick, pw, title: '', content,
+        date: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })
+      })
+    });
+    document.getElementById('voiceNick').value = '';
+    document.getElementById('voicePw').value = '';
+    document.getElementById('voiceContent').value = '';
+    await loadVoicePosts();
+  } catch(e) {
+    alert('등록 중 오류가 발생했습니다. 다시 시도해주세요.');
+  } finally {
+    btn.disabled = false; btn.textContent = '등록하기';
+  }
+}
+
+async function submitComment(idx, rowIndex) {
+  const nick = document.getElementById(`cmtNick-${idx}`).value.trim() || '익명';
+  const pw   = document.getElementById(`cmtPw-${idx}`)?.value.trim() || '';
+  const text = document.getElementById(`cmtText-${idx}`).value.trim();
+  if (!text) { alert('댓글 내용을 입력해주세요.'); return; }
+
+  try {
+    await fetch(VOICE_SCRIPT_URL, {
+      method: 'POST', headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({
+        type: 'voiceComment', rowIndex, nick, pw, text,
+        date: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })
+      })
+    });
+    await loadVoicePosts();
+  } catch(e) {
+    alert('댓글 등록 중 오류가 발생했습니다.');
+  }
+}
+
+/* ──────────────────────────────
+   비밀번호 모달 & 수정/삭제 로직
+────────────────────────────── */
+let _voicePwAction = null; // { type, ...params }
+
+function openVoicePwModal(title, desc, action) {
+  _voicePwAction = action;
+  document.getElementById('voicePwTitle').textContent = title;
+  document.getElementById('voicePwDesc').textContent = desc;
+  document.getElementById('voicePwInputModal').value = '';
+  document.getElementById('voicePwError').classList.remove('show');
+  document.getElementById('voicePwOverlay').classList.add('active');
+  setTimeout(() => document.getElementById('voicePwInputModal').focus(), 100);
+}
+function closeVoicePwModal() {
+  document.getElementById('voicePwOverlay').classList.remove('active');
+  _voicePwAction = null;
+}
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('voicePwOverlay')?.addEventListener('click', function(e) {
+    if (e.target === this) closeVoicePwModal();
+  });
+  document.getElementById('voicePwInputModal')?.addEventListener('keydown', e => {
+    if (e.key === 'Enter') voicePwConfirm();
+  });
+});
+
+async function voicePwConfirm() {
+  const pw = document.getElementById('voicePwInputModal').value.trim();
+  if (!pw) { document.getElementById('voicePwError').textContent = '비밀번호를 입력해주세요.'; document.getElementById('voicePwError').classList.add('show'); return; }
+  if (!_voicePwAction) return;
+
+  const a = _voicePwAction;
+
+  if (a.type === 'editPost') {
+    // 비밀번호 검증 후 수정 폼 열기
+    try {
+      const res = await fetch(VOICE_SCRIPT_URL + `?action=verifyVoicePw&rowIndex=${encodeURIComponent(a.rowIndex)}&pw=${encodeURIComponent(pw)}`);
+      const d = await res.json();
+      if (!d.ok) { document.getElementById('voicePwError').textContent = '비밀번호가 올바르지 않습니다.'; document.getElementById('voicePwError').classList.add('show'); return; }
+    } catch(e) {}
+    closeVoicePwModal();
+    openEditPostForm(a.idx);
+  } else if (a.type === 'deletePost') {
+    try {
+      const res = await fetch(VOICE_SCRIPT_URL + `?action=verifyVoicePw&rowIndex=${encodeURIComponent(a.rowIndex)}&pw=${encodeURIComponent(pw)}`);
+      const d = await res.json();
+      if (!d.ok) { document.getElementById('voicePwError').textContent = '비밀번호가 올바르지 않습니다.'; document.getElementById('voicePwError').classList.add('show'); return; }
+    } catch(e) {}
+    closeVoicePwModal();
+    await deletePost(a.rowIndex);
+  } else if (a.type === 'editComment') {
+    try {
+      const res = await fetch(VOICE_SCRIPT_URL + `?action=verifyCommentPw&rowIndex=${encodeURIComponent(a.rowIndex)}&cmtIdx=${encodeURIComponent(a.cmtIdx)}&pw=${encodeURIComponent(pw)}`);
+      const d = await res.json();
+      if (!d.ok) { document.getElementById('voicePwError').textContent = '비밀번호가 올바르지 않습니다.'; document.getElementById('voicePwError').classList.add('show'); return; }
+    } catch(e) {}
+    closeVoicePwModal();
+    // 댓글 수정 입력창으로 교체
+    openEditCommentInline(a.postIdx, a.cmtIdx, a.rowIndex, a.origText);
+  } else if (a.type === 'deleteComment') {
+    try {
+      const res = await fetch(VOICE_SCRIPT_URL + `?action=verifyCommentPw&rowIndex=${encodeURIComponent(a.rowIndex)}&cmtIdx=${encodeURIComponent(a.cmtIdx)}&pw=${encodeURIComponent(pw)}`);
+      const d = await res.json();
+      if (!d.ok) { document.getElementById('voicePwError').textContent = '비밀번호가 올바르지 않습니다.'; document.getElementById('voicePwError').classList.add('show'); return; }
+    } catch(e) {}
+    closeVoicePwModal();
+    await deleteComment(a.rowIndex, a.cmtIdx);
+  }
+}
+
+// ── 게시글 수정 ──
+function askEditPost(idx, rowIndex) {
+  openVoicePwModal('게시글 수정', '작성 시 입력한 비밀번호를 입력하세요.', { type: 'editPost', idx, rowIndex });
+}
+function openEditPostForm(idx) {
+  document.getElementById(`vcontent-${idx}`).style.display = 'none';
+  document.getElementById(`veditform-${idx}`).style.display = 'block';
+  document.getElementById(`vpost-${idx}`).querySelector('.voice-post-actions').style.display = 'none';
+}
+function cancelEditPost(idx) {
+  document.getElementById(`vcontent-${idx}`).style.display = '';
+  document.getElementById(`veditform-${idx}`).style.display = 'none';
+  document.getElementById(`vpost-${idx}`).querySelector('.voice-post-actions').style.display = '';
+}
+async function saveEditPost(idx, rowIndex) {
+  const newText = document.getElementById(`vedittext-${idx}`).value.trim();
+  if (!newText) { alert('내용을 입력해주세요.'); return; }
+  try {
+    await fetch(VOICE_SCRIPT_URL, {
+      method: 'POST', headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ type: 'editVoice', rowIndex, content: newText })
+    });
+    await loadVoicePosts();
+  } catch(e) { alert('수정 중 오류가 발생했습니다.'); }
+}
+
+// ── 게시글 삭제 (작성자) ──
+function askDeletePost(idx, rowIndex) {
+  openVoicePwModal('게시글 삭제', '작성 시 입력한 비밀번호를 입력하세요.', { type: 'deletePost', idx, rowIndex });
+}
+async function deletePost(rowIndex) {
+  if (!confirm('게시글을 삭제하시겠습니까?')) return;
+  try {
+    await fetch(VOICE_SCRIPT_URL, {
+      method: 'POST', headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ type: 'deleteVoice', rowIndex })
+    });
+    await loadVoicePosts();
+  } catch(e) { alert('삭제 중 오류가 발생했습니다.'); }
+}
+
+// ── 게시글 삭제 (관리자) ──
+async function adminDeletePost(rowIndex) {
+  const pw = prompt('관리자 비밀번호를 입력하세요:');
+  if (!pw) return;
+  if (pw !== ADMIN_PASSWORD) { alert('관리자 비밀번호가 올바르지 않습니다.'); return; }
+  if (!confirm('관리자 권한으로 삭제하시겠습니까?')) return;
+  try {
+    await fetch(VOICE_SCRIPT_URL, {
+      method: 'POST', headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ type: 'adminDeleteVoice', rowIndex })
+    });
+    await loadVoicePosts();
+  } catch(e) { alert('삭제 중 오류가 발생했습니다.'); }
+}
+
+// ── 댓글 수정 ──
+function askEditComment(postIdx, cmtIdx, rowIndex) {
+  const cmtEl = document.getElementById(`cmt-${postIdx}-${cmtIdx}`);
+  const origText = cmtEl ? cmtEl.childNodes[2]?.textContent?.trim() : '';
+  openVoicePwModal('댓글 수정', '댓글 작성 시 입력한 비밀번호를 입력하세요.', { type: 'editComment', postIdx, cmtIdx, rowIndex, origText });
+}
+function openEditCommentInline(postIdx, cmtIdx, rowIndex, origText) {
+  const cmtEl = document.getElementById(`cmt-${postIdx}-${cmtIdx}`);
+  if (!cmtEl) return;
+  const editId = `cmtedit-${postIdx}-${cmtIdx}`;
+  cmtEl.style.display = 'none';
+  const editDiv = document.createElement('div');
+  editDiv.id = editId;
+  editDiv.style.cssText = 'display:flex;gap:6px;align-items:center;padding:6px 0;';
+  editDiv.innerHTML = `
+    <input style="flex:1;padding:6px 10px;border:1.5px solid #a8d5b5;border-radius:8px;font-size:13px;font-family:inherit;outline:none;" 
+           id="cmteditinput-${postIdx}-${cmtIdx}" value="${escHtml(origText || '')}" maxlength="200">
+    <button onclick="cancelEditComment(${postIdx},${cmtIdx})" style="padding:5px 12px;background:#f0f0f0;color:#666;border:none;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">취소</button>
+    <button onclick="saveEditComment(${postIdx},${cmtIdx},'${rowIndex}')" style="padding:5px 12px;background:#1a5c2a;color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">저장</button>`;
+  cmtEl.parentNode.insertBefore(editDiv, cmtEl.nextSibling);
+  document.getElementById(`cmteditinput-${postIdx}-${cmtIdx}`)?.focus();
+}
+function cancelEditComment(postIdx, cmtIdx) {
+  document.getElementById(`cmt-${postIdx}-${cmtIdx}`).style.display = '';
+  document.getElementById(`cmtedit-${postIdx}-${cmtIdx}`)?.remove();
+}
+async function saveEditComment(postIdx, cmtIdx, rowIndex) {
+  const newText = document.getElementById(`cmteditinput-${postIdx}-${cmtIdx}`)?.value.trim();
+  if (!newText) { alert('내용을 입력해주세요.'); return; }
+  try {
+    await fetch(VOICE_SCRIPT_URL, {
+      method: 'POST', headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ type: 'editVoiceComment', rowIndex, cmtIdx, text: newText })
+    });
+    await loadVoicePosts();
+  } catch(e) { alert('수정 중 오류가 발생했습니다.'); }
+}
+
+// ── 댓글 삭제 ──
+function askDeleteComment(postIdx, cmtIdx, rowIndex) {
+  openVoicePwModal('댓글 삭제', '댓글 작성 시 입력한 비밀번호를 입력하세요.', { type: 'deleteComment', postIdx, cmtIdx, rowIndex });
+}
+async function deleteComment(rowIndex, cmtIdx) {
+  if (!confirm('댓글을 삭제하시겠습니까?')) return;
+  try {
+    await fetch(VOICE_SCRIPT_URL, {
+      method: 'POST', headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ type: 'deleteVoiceComment', rowIndex, cmtIdx })
+    });
+    await loadVoicePosts();
+  } catch(e) { alert('삭제 중 오류가 발생했습니다.'); }
+}
+
+// 답글 등록 (관리자)
+async function submitReply() {
+  const text     = document.getElementById('adminReplyText').value.trim();
+  const rowIndex = document.getElementById('adminReplyForm').dataset.rowIndex;
+  if (!text) { alert('답글 내용을 입력하세요.'); return; }
+
+  const btn = document.querySelector('.admin-reply-btn');
+  btn.disabled = true; btn.textContent = '등록 중...';
+
+  const data = {
+    type     : 'reply',
+    rowIndex : rowIndex,
+    reply    : text,
+    replyAt  : new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })
+  };
+
+  try {
+    await fetch(CONTACT_SCRIPT_URL, {
+      method: 'POST', headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(data)
+    });
+    document.getElementById('replyBox').innerHTML = `
+      <div class="reply-box">
+        <div class="reply-header"><span>💬 관리자 답변</span></div>
+        <div class="reply-body">${escHtml(text)}</div>
+        <div class="reply-date">${data.replyAt}</div>
+      </div>`;
+    document.getElementById('adminReplyText').value = '';
+    btn.disabled = false; btn.textContent = '답글 등록';
+  } catch (err) {
+    btn.disabled = false; btn.textContent = '답글 등록';
+    alert('오류가 발생했습니다. 다시 시도해 주세요.');
+  }
+}
+
+// 상세 → 목록 or 조회화면으로 뒤로가기
+function backFromDetail() {
+  document.getElementById('inquiryDetail').classList.remove('show');
+  // 목록이 있으면 목록으로, 없으면 조회화면으로
+  if (window._inquiryItems && window._inquiryItems.length > 1) {
+    document.getElementById('inquiryListPanel').style.display = '';
+  } else {
+    backToSearch();
+  }
+}
+
+// 조회 화면 초기화
+function backToSearch() {
+  document.getElementById('inquiryPwBox').style.display = '';
+  document.getElementById('inquiryListPanel').style.display = 'none';
+  document.getElementById('inquiryDetail').classList.remove('show');
+  document.getElementById('inquiryName').value = '';
+  document.getElementById('inquiryPwInput').value = '';
+  document.getElementById('pwError').classList.remove('show');
+  document.getElementById('adminNotice').style.display = 'none';
+}
+
+
+/* ─────────────────────────────
+   열린제안(상시) 폼 모달
+───────────────────────────── */
+function openOpenProposalModal() {
+  document.getElementById('joinWrap').classList.remove('open');
+  document.getElementById('openProposalModalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeOpenProposalModal(skipConfirm) {
+  if (!skipConfirm) {
+    const form = document.getElementById('openProposalForm');
+    const inputs = form.querySelectorAll('input[type="text"], input[type="tel"], input[type="email"], textarea');
+    const hasContent = Array.from(inputs).some(el => el.value.trim() !== '');
+    if (hasContent) {
+      if (!confirm('작성 중인 내용이 있습니다.\n닫으면 입력한 내용이 모두 사라집니다.\n정말 닫으시겠습니까?')) return;
+    }
+  }
+  document.getElementById('openProposalModalOverlay').classList.remove('active');
+  document.getElementById('openProposalForm').reset();
+  document.querySelectorAll('#openProposalForm input, #openProposalForm textarea').forEach(el => el.value = '');
+  document.querySelectorAll('#openProposalForm select').forEach(el => el.selectedIndex = 0);
+  document.body.style.overflow = '';
+}
+document.getElementById('openProposalModalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeOpenProposalModal();
+});
+
+// 열린제안 파일 업로드
+const opFileUpload = document.getElementById('opFileUpload');
+const opFileInput  = document.getElementById('opFileInput');
+const opFileName   = document.getElementById('opFileName');
+opFileUpload.addEventListener('click', () => opFileInput.click());
+opFileInput.addEventListener('change', function() {
+  if (this.files.length > 0) {
+    const file = this.files[0];
+    if (file.size > 10 * 1024 * 1024) {
+      alert('파일 크기는 10MB를 초과할 수 없습니다.');
+      this.value = ''; opFileName.textContent = '';
+      opFileUpload.classList.remove('has-file'); return;
+    }
+    opFileName.textContent = file.name;
+    opFileUpload.classList.add('has-file');
+  } else {
+    opFileName.textContent = '';
+    opFileUpload.classList.remove('has-file');
+  }
+});
+
+document.getElementById('openProposalForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('.fm-submit-btn');
+  btn.disabled = true; btn.textContent = '접수 중...';
+
+  const formData = new FormData(this);
+  const data = {
+    type     : 'open_proposal',
+    name     : formData.get('name'),
+    phone    : formData.get('phone'),
+    email    : formData.get('email') || '',
+    district : formData.get('district'),
+    category : formData.get('category'),
+    title    : formData.get('title'),
+    content  : formData.get('content'),
+    effect   : formData.get('effect') || '',
+    submitAt : new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })
+  };
+
+  if (opFileInput.files.length > 0) {
+    const file = opFileInput.files[0];
+    try {
+      data.fileName = file.name;
+      data.fileType = file.type;
+      data.fileData = await fileToBase64(file);
+    } catch (err) { console.error('파일 변환 오류:', err); }
+  }
+
+  try {
+    await fetch(CONTACT_SCRIPT_URL, {
+      method : 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body   : JSON.stringify(data)
+    });
+    closeOpenProposalModal(true);
+    document.getElementById('successOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    this.reset();
+    opFileName.textContent = '';
+    opFileUpload.classList.remove('has-file');
+  } catch (err) {
+    alert('접수 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+  } finally {
+    btn.disabled = false; btn.textContent = '제안서 접수하기 💬';
+  }
+});
+
+/* ─────────────────────────────
+   정기공모 폼 모달
+───────────────────────────── */
+function openFormModal() {
+  // 드롭다운 닫기
+  document.getElementById('joinWrap').classList.remove('open');
+  document.getElementById('formModalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeFormModal(skipConfirm) {
+  // 폼에 입력된 내용이 있으면 경고
+  if (!skipConfirm) {
+    const form = document.getElementById('proposalForm');
+    const inputs = form.querySelectorAll('input[type="text"], input[type="tel"], input[type="email"], textarea, select');
+    const hasContent = Array.from(inputs).some(el => el.value.trim() !== '');
+    if (hasContent) {
+      if (!confirm('작성 중인 내용이 있습니다.\n닫으면 입력한 내용이 모두 사라집니다.\n정말 닫으시겠습니까?')) return;
+    }
+  }
+  document.getElementById('formModalOverlay').classList.remove('active');
+  document.getElementById('proposalForm').reset();
+  document.querySelectorAll('#proposalForm input, #proposalForm textarea').forEach(el => el.value = '');
+  document.querySelectorAll('#proposalForm select').forEach(el => el.selectedIndex = 0);
+  document.body.style.overflow = '';
+}
+document.getElementById('formModalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeFormModal();
+});
+
+/* ─────────────────────────────
+   개인정보 전문 모달
+───────────────────────────── */
+function openPrivacyFull() {
+  document.getElementById('privacyFullOverlay').classList.add('active');
+}
+function closePrivacyFull() {
+  document.getElementById('privacyFullOverlay').classList.remove('active');
+}
+document.getElementById('privacyFullOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closePrivacyFull();
+});
+
+function openIpFull() {
+  document.getElementById('ipFullOverlay').classList.add('active');
+}
+function closeIpFull() {
+  document.getElementById('ipFullOverlay').classList.remove('active');
+}
+document.getElementById('ipFullOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeIpFull();
+});
+
+/* ─────────────────────────────
+   성공 모달
+───────────────────────────── */
+function closeSuccessModal() {
+  document.getElementById('successOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+  // 폼 초기화
+  document.getElementById('proposalForm').reset();
+  document.getElementById('fmFileName').textContent = '';
+  document.getElementById('fmFileUpload').classList.remove('has-file');
+}
+
+/* ─────────────────────────────
+   파일 업로드
+───────────────────────────── */
+const fmFileUpload = document.getElementById('fmFileUpload');
+const fmFileInput  = document.getElementById('fmFileInput');
+const fmFileName   = document.getElementById('fmFileName');
+
+fmFileUpload.addEventListener('click', () => fmFileInput.click());
+
+fmFileInput.addEventListener('change', function() {
+  if (this.files.length > 0) {
+    const file = this.files[0];
+    if (file.size > 10 * 1024 * 1024) {
+      alert('파일 크기는 10MB를 초과할 수 없습니다.');
+      this.value = '';
+      fmFileName.textContent = '';
+      fmFileUpload.classList.remove('has-file');
+      return;
+    }
+    fmFileName.textContent = file.name;
+    fmFileUpload.classList.add('has-file');
+  } else {
+    fmFileName.textContent = '';
+    fmFileUpload.classList.remove('has-file');
+  }
+});
+
+/* ─────────────────────────────
+   파일 → Base64
+───────────────────────────── */
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload  = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = err => reject(err);
+  });
+}
+
+/* ─────────────────────────────
+   폼 제출 → Google Sheets
+───────────────────────────── */
+document.getElementById('proposalForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const loading = document.getElementById('fmLoading');
+  loading.classList.add('active');
+
+  const formData = new FormData(this);
+
+  const data = {
+    type     : 'proposal',
+    name     : formData.get('name'),
+    phone    : formData.get('phone'),
+    email    : formData.get('email'),
+    district : formData.get('district'),
+    category : formData.get('category'),
+    title    : formData.get('title'),
+    content  : formData.get('content'),
+    effect   : formData.get('effect') || '',
+    submitAt : new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })
+  };
+
+  // 파일 첨부
+  if (fmFileInput.files.length > 0) {
+    const file = fmFileInput.files[0];
+    try {
+      data.fileName = file.name;
+      data.fileType = file.type;
+      data.fileData = await fileToBase64(file);
+    } catch (err) {
+      console.error('파일 변환 오류:', err);
+    }
+  }
+
+  try {
+    // ✅ 아래 URL을 실제 Google Apps Script 웹앱 URL로 교체하세요
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwR_3GWfWuGN2l5QDh2DN3Rs-fuSjfgQaXq-cER9kV_OubdI51LlQSO_JceSo93Nd-A/exec';
+
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method : 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body   : JSON.stringify(data)
+    });
+
+    loading.classList.remove('active');
+    closeFormModal(true);
+    document.getElementById('successOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+  } catch (err) {
+    loading.classList.remove('active');
+    alert('접수 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+    console.error('제출 오류:', err);
+  }
+});
+</script>
+</body>
+</html>
