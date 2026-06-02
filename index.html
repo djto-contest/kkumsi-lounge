@@ -3760,7 +3760,7 @@ async function adminDeletePost(rowIndex) {
   const pw = prompt('관리자 비밀번호를 입력하세요:');
   if (!pw) return;
   if (!confirm('관리자 권한으로 삭제하시겠습니까?')) return;
-  if (pw !== ADMIN_PASSWORD) { alert('관리자 비밀번호가 올바르지 않습니다.'); return;
+  if (pw !== ADMIN_PASSWORD) { alert('관리자 비밀번호가 올바르지 않습니다.'); return; }
   const adminToken = 'djto2026-admin-k8mP2qZ9rL';
   try {
     await fetch(VOICE_SCRIPT_URL, {
