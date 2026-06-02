@@ -3315,7 +3315,6 @@ document.getElementById('faqModal').addEventListener('click', function(e) {
    문의하기 모달
 ───────────────────────────── */
 const CONTACT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwR_3GWfWuGN2l5QDh2DN3Rs-fuSjfgQaXq-cER9kV_OubdI51LlQSO_JceSo93Nd-A/exec';
-const ADMIN_PASSWORD      = 'admin1234';
 
 function openContactModal() {
   document.getElementById('contactModal').classList.add('active');
@@ -3404,11 +3403,10 @@ async function searchInquiry() {
   if (!name || !pw) { errEl.textContent = '이름과 비밀번호를 모두 입력해 주세요.'; errEl.classList.add('show'); return; }
 
   // 관리자 여부는 서버(Apps Script)에서 검증합니다.
-  // 클라이언트에서는 isAdmin 플래그를 보내지 않고, 서버가 adminToken으로 직접 판단합니다.
   const pwHash = btoa(pw + '_djto2026');
 
   try {
-    const res  = await fetch(CONTACT_SCRIPT_URL + '?action=getInquiry&name=' + encodeURIComponent(name) + '&pwHash=' + encodeURIComponent(pwHash) + '&adminToken=' + encodeURIComponent(pw === ADMIN_PASSWORD ? 'djto2026-admin-k8mP2qZ9rL' : ''));
+    const res  = await fetch(CONTACT_SCRIPT_URL + '?action=getInquiry&name=' + encodeURIComponent(name) + '&pwHash=' + encodeURIComponent(pwHash));
     const json = await res.json();
 
     if (!json || json.result === 'notfound') {
@@ -3760,12 +3758,10 @@ async function adminDeletePost(rowIndex) {
   const pw = prompt('관리자 비밀번호를 입력하세요:');
   if (!pw) return;
   if (!confirm('관리자 권한으로 삭제하시겠습니까?')) return;
-  if (pw !== ADMIN_PASSWORD) { alert('관리자 비밀번호가 올바르지 않습니다.'); return; }
-  const adminToken = 'djto2026-admin-k8mP2qZ9rL';
   try {
     await fetch(VOICE_SCRIPT_URL, {
       method: 'POST', headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ type: 'adminDeleteVoice', rowIndex, adminToken })
+      body: JSON.stringify({ type: 'adminDeleteVoice', rowIndex })
     });
     await loadVoicePosts();
   } catch(e) { alert('삭제 중 오류가 발생했습니다.'); }
