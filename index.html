@@ -164,12 +164,12 @@ a { text-decoration: none; color: inherit; }
 }
 
 .hero-contest-name {
-  font-family: 'Jalnan2', 'Nanum Gothic', sans-serif;
-  font-size: clamp(16px, 1.7vw, 23px);
-  font-weight: normal;
-  color: #2a8a32;
+  font-family: 'NanumDaHaengCe', 'Nanum Pen Script', cursive;
+  font-size: clamp(24px, 2.4vw, 28px);
+  font-weight: 900;
+  color: #0f3d15;
   letter-spacing: 0.06em;
-  margin-bottom: 18px;
+  margin-bottom: 32px;
   text-align: center;
 }
 
@@ -181,7 +181,7 @@ a { text-decoration: none; color: inherit; }
   line-height: 1.2;
   letter-spacing: -0.01em;
   text-shadow: 0 2px 16px rgba(255,255,255,0.75);
-  margin-bottom: 14px;
+  margin-bottom: 4px;
   text-align: center;
 }
 
@@ -191,17 +191,18 @@ a { text-decoration: none; color: inherit; }
   font-weight: 900;
   color: #0f3d15;
   text-align: center;
-  margin-top: -10px;
+  margin-top: -12px;
   margin-bottom: 4px;
 }
 
 .hero-sub {
   font-family: 'NanumDaHaengCe', 'Nanum Pen Script', cursive;
-  font-size: clamp(22px, 2.2vw, 26px);
+  font-size: clamp(24px, 2.4vw, 28px);
   font-weight: 900;
   color: #0f3d15;
   line-height: 1.9;
   text-align: center;
+  margin-top: 10px;
 }
 
 /* ══════════════════════════════
@@ -231,7 +232,7 @@ a { text-decoration: none; color: inherit; }
 .card {
   background: white;
   border-radius: 24px;
-  padding: 22px 18px;
+  padding: 24px 18px;
   box-shadow: 0 6px 18px rgba(0,0,0,.06);
   width: 100%;
   box-sizing: border-box;
@@ -273,8 +274,8 @@ a { text-decoration: none; color: inherit; }
   align-items: stretch;
 }
 
-.count-title { font-size: 18px; font-weight: 900; color: #134a1c; margin-bottom: 3px; }
-.count-sub { font-size: 12px; color: #888; }
+.count-title { font-size: 18px; font-weight: 900; color: #134a1c; margin-bottom: 3px; text-align: left; }
+.count-sub { font-size: 12px; color: #888; text-align: left; }
 
 /* 진행 단계 */
 .progress-wrap {
@@ -715,7 +716,7 @@ a { text-decoration: none; color: inherit; }
   background: #f9f9f9;
   border: 1.5px solid #e0e0e0;
   border-radius: 12px;
-  padding: 22px 18px;
+  padding: 24px 18px;
   margin: 20px 0;
 }
 .fm-privacy-header {
@@ -919,7 +920,7 @@ a { text-decoration: none; color: inherit; }
 .voice-post {
   border: 1.5px solid #e8f0e0;
   border-radius: 14px;
-  padding: 22px 18px;
+  padding: 24px 18px;
   background: #fff;
   transition: box-shadow .2s;
 }
@@ -2090,247 +2091,6 @@ a { text-decoration: none; color: inherit; }
   animation: sudaFloat 2.5s ease-in-out infinite;
 }
 
-
-  .hero-title { font-size: 60px; }
-  .time-box { width: 48px; height: 48px; }
-  .time-box strong { font-size: 18px; }
-}
-
-
-
-/* ── 햄버거 버튼 ── */
-.mobile-only { display: none; }
-
-.hamburger-btn {
-  display: none !important;
-  background: none;
-  border: none;
-  font-size: 22px;
-  cursor: pointer;
-  color: #1a5c2a;
-  padding: 4px 8px;
-}
-
-/* ── 모바일 메뉴 ── */
-.mobile-menu-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  z-index: 999;
-}
-.mobile-menu-overlay.active { display: block; }
-
-.mobile-menu {
-  position: fixed;
-  top: 0; right: -100%;
-  width: 75%;
-  max-width: 300px;
-  height: 100%;
-  background: white;
-  z-index: 1000;
-  transition: right 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  box-shadow: -4px 0 20px rgba(0,0,0,0.15);
-}
-.mobile-menu.active { right: 0; }
-
-.mobile-menu-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 16px;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.mobile-menu-nav {
-  display: flex;
-  flex-direction: column;
-  padding: 12px 0;
-  flex: 1;
-}
-.mobile-menu-nav a {
-  padding: 14px 20px;
-  font-size: 15px;
-  font-weight: 700;
-  color: #222;
-  border-bottom: 1px solid #f8f8f8;
-  text-decoration: none;
-}
-.mobile-menu-nav a:hover { background: #f3faf3; color: #1a5c2a; }
-
-.mobile-menu-btns {
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  border-top: 1px solid #f0f0f0;
-}
-.mobile-join-btn {
-  display: block;
-  padding: 13px 16px;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 800;
-  text-align: center;
-  cursor: pointer;
-  background: #f3faf3;
-  color: #1a5c2a;
-  border: 1.5px solid #a8d5b5;
-  text-decoration: none;
-}
-.mobile-join-main {
-  background: #1a5c2a;
-  color: white;
-  border-color: #1a5c2a;
-}
-
-/* ══════════════════════════════
-   모바일 반응형
-══════════════════════════════ */
-@media (max-width: 768px) {
-
-  /* 기본 */
-  body { min-width: unset; overflow-x: hidden; }
-
-  /* ── 네비 ── */
-  .nav-wrap { padding: 10px 0 0; }
-  .nav { width: calc(100% - 24px) !important; }
-  .mobile-only { display: none; }
-
-.hamburger-btn { display: block !important; }
-  .menu { display: none; }
-  .join-wrap { display: none; }
-  .inner { width: 100% !important; padding: 0 12px; box-sizing: border-box; }
-  .nav {
-    width: calc(100% - 24px);
-    height: 50px;
-    padding: 0 14px;
-    border-radius: 12px;
-  }
-  .logo img { height: 20px; }
-  .join-btn { padding: 7px 12px; font-size: 12px; border-radius: 8px; }
-  .join-dropdown { flex-direction: column !important; }
-  .join-dropdown a { border-right: none !important; border-bottom: 1px solid #f0f0f0 !important; }
-  .join-dropdown a:last-child { border-bottom: none !important; }
-
-  /* ── 히어로 ── */
-  .hero-section {
-    background-size: cover;
-    background-position: 70% top;
-    min-height: 280px;
-  }
-  .hero-text-wrap {
-    width: 100%;
-    margin-left: 0;
-    padding: 28px 20px 16px;
-    align-items: flex-start;
-    text-align: left;
-  }
-  .hero-contest-name { font-size: 12px; }
-  .hero-title { font-size: 60px; line-height: 1.15; }
-  .hero-desc { font-size: 12px; margin-top: -6px; }
-  .hero-sub { font-size: 15px; text-align: left; }
-
-  /* ── 4카드 ── */
-  .cards-hero { padding: 0 12px 16px; width: 100% !important; box-sizing: border-box; }
-  .grid-4 {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 10px !important;
-  }
-  .card { padding: 12px 14px; border-radius: 16px; }
-  .card-head { gap: 10px; }
-  .icon { width: 36px; height: 36px; font-size: 16px; }
-  .card-label { font-size: 12px; margin-bottom: 4px; }
-  .card-content { font-size: 14px; }
-  .card-desc { font-size: 12px; }
-  .dday { font-size: 11px; padding: 4px 10px; margin-top: 8px; }
-
-  /* ── 하단 3단 → 1단 ── */
-  .inner { width: 100%; padding: 0 12px; box-sizing: border-box; }
-  .cards-wrap { padding: 16px 0; }
-  .bottom { grid-template-columns: 1fr !important; gap: 10px; }
-
-  /* 카운트다운 */
-  .count-title { font-size: 15px; }
-  .timer { gap: 6px; margin-top: 12px; }
-  .time-box { width: 52px; height: 52px; border-radius: 10px; }
-  .time-box strong { font-size: 20px; }
-  .time-box span { font-size: 10px; }
-
-  /* 진행단계 */
-  .progress-wrap { margin-top: 20px; }
-  .step-circle { width: 26px; height: 26px; font-size: 10px; }
-  .step-label { font-size: 9px; }
-  .step-line { margin-bottom: 14px; }
-
-  /* ── 사업화사례 ── */
-  .prev-slide-img { height: 130px !important; }
-  .prev-slide-title { font-size: 13px; }
-
-  /* ── 정보섹션 ── */
-  .info-section { padding: 20px 12px; }
-  .info-grid { grid-template-columns: 1fr !important; gap: 12px; }
-
-  /* ── CTA 배너 ── */
-  .cta-wrap {
-    flex-direction: column !important;
-    gap: 12px;
-    padding: 18px 16px;
-  }
-  .cta-left { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .cta-title { font-size: 16px; }
-  .cta-sub { font-size: 12px; }
-  .cta-btn { width: 100%; text-align: center; padding: 12px; font-size: 14px; }
-
-  /* ── FAQ ── */
-  .faq-q { font-size: 13px; padding: 14px 12px; }
-  .faq-a { font-size: 12px; padding: 10px 12px; }
-
-  /* ── 푸터 ── */
-  .footer { padding: 20px 12px; }
-  .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
-  .footer-links { flex-wrap: wrap; justify-content: center; gap: 8px; }
-  .footer-info { font-size: 11px; line-height: 1.8; }
-
-  /* ── 모달 폼 ── */
-  .modal-overlay { align-items: flex-end !important; padding: 0 !important; }
-  .form-modal {
-    width: 100% !important;
-    max-width: 100% !important;
-    border-radius: 20px 20px 0 0 !important;
-    max-height: 90vh;
-    overflow-y: auto;
-  }
-  .fm-form-row { flex-direction: column !important; gap: 0 !important; }
-  .fm-form-group { margin-bottom: 14px; }
-  .fm-form-group label { font-size: 13px; }
-  .fm-form-group input, .fm-form-group select, .fm-form-group textarea { font-size: 14px; }
-
-  /* ── 수다TALK 모달 ── */
-  .voice-modal-overlay { align-items: flex-end !important; }
-  .voice-modal {
-    width: 100% !important;
-    max-width: 100% !important;
-    border-radius: 20px 20px 0 0 !important;
-    max-height: 90vh;
-    overflow-y: auto;
-  }
-
-  /* ── 섹션 공통 ── */
-  .section-head { margin-bottom: 10px; }
-  .section-title { font-size: 15px; }
-  .more-btn { font-size: 11px; padding: 4px 10px; }
-}
-
-@media (max-width: 400px) {
-  .grid-4 { grid-template-columns: 1fr 1fr !important; }
-  .hero-title { font-size: 60px; }
-  .time-box { width: 44px; height: 44px; }
-  .time-box strong { font-size: 16px; }
-}
-
 </style>
 </head>
 <body>
@@ -2352,7 +2112,7 @@ a { text-decoration: none; color: inherit; }
         <a href="#" onclick="openGuideModal(); return false;">작성 가이드라인</a>
         <a href="#" onclick="openVoiceModal(); return false;">💬 대전관광 <span class="suda-talk">수다TALK</span></a>
       </nav>
-      <div class="mobile-only"><button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()">☰</button></div>
+
       <div class="join-wrap" id="joinWrap">
         <button class="join-btn" onclick="toggleJoin()">참여하기 ▾</button>
         <div class="join-dropdown">
@@ -2364,33 +2124,14 @@ a { text-decoration: none; color: inherit; }
   </div>
 
 
-  <!-- 모바일 메뉴 -->
-  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-header">
-      <img src="logo.png" alt="대전관광공사" style="height:22px;">
-      <button onclick="closeMobileMenu()" style="background:none;border:none;font-size:22px;cursor:pointer;color:#333;">✕</button>
-    </div>
-    <nav class="mobile-menu-nav">
-      <a href="#" onclick="openModal(); closeMobileMenu(); return false;">공모전 소개</a>
-      <a href="#" onclick="openProcModal(); closeMobileMenu(); return false;">선정절차</a>
-      <a href="#" onclick="openFaqModal(); closeMobileMenu(); return false;">FAQ</a>
-      <a href="#" onclick="openContactModal(); closeMobileMenu(); return false;">문의하기</a>
-      <a href="#" onclick="openGuideModal(); closeMobileMenu(); return false;">작성 가이드라인</a>
-      <a href="#" onclick="openVoiceModal(); closeMobileMenu(); return false;">💬 대전관광 수다TALK</a>
-    </nav>
-    <div class="mobile-menu-btns">
-      <a class="mobile-join-btn" onclick="openOpenProposalModal(); closeMobileMenu(); return false;">💬 열린제안 <span style="font-size:11px;background:#d4edda;color:#164d22;padding:2px 6px;border-radius:999px;margin-left:4px;">상시</span></a>
-      <a class="mobile-join-btn mobile-join-main" onclick="openFormModal(); closeMobileMenu(); return false;">📋 정기공모 참여하기</a>
-    </div>
-  </div>
+
 
   <!-- 히어로 텍스트 -->
   <div class="hero-text-wrap">
     <div class="hero-year">2026</div>
-    <div class="hero-contest-name">2026 주민참여 아이디어 공모전</div>
+    <div class="hero-contest-name">대전 관광의 내일을 만드는 <span style="background:rgba(200, 230, 201, 0.4); border-radius:6px; padding:2px 8px;">시민 아이디어 플랫폼</span></div>
     <div class="hero-title">꿈씨라운지</div>
-    <div class="hero-desc">[대전(Daejeon)의 관광 아이디어가 모이는 라운지]</div><div class="hero-sub">시민의 아이디어가 모이는 공간, 대전 관광의 변화를 만듭니다.</div>
+    <div class="hero-desc">[대전(Daejeon)의 관광 아이디어가 모이는 라운지]</div>
   </div>
 
   <!-- 4카드 -->
@@ -2457,7 +2198,7 @@ a { text-decoration: none; color: inherit; }
 <div class="cards-wrap">
   <div class="inner">
     <div class="bottom">
-      <div class="card" style="display:flex; flex-direction:column; justify-content:center;">
+      <div class="card" style="display:flex; flex-direction:column; justify-content:flex-start;">
         <div class="count-title">D-DAY 카운트다운 🍃</div>
         <div class="count-sub">접수 마감까지 남은 시간</div>
         <div class="timer">
