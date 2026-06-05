@@ -3928,11 +3928,17 @@ async function submitReply() {
   const btn = document.querySelector('.admin-reply-btn');
   btn.disabled = true; btn.textContent = '등록 중...';
 
+  // [보안] 관리자 비밀번호 입력 받아 서버에서 검증
+  const adminPw = document.getElementById('adminReplyPwInput')?.value?.trim() || '';
+  if (!adminPw) { btn.disabled = false; btn.textContent = '답글 등록'; alert('관리자 비밀번호를 입력하세요.'); return; }
+  const adminPwHash = await hashPassword(adminPw);
+
   const data = {
-    type     : 'reply',
-    rowIndex : rowIndex,
-    reply    : text,
-    replyAt  : new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })
+    type         : 'reply',
+    rowIndex     : rowIndex,
+    reply        : sanitizeInput(text, 1000),
+    replyAt      : new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
+    adminPwHash  : adminPwHash
   };
 
   try {
