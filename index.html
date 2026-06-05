@@ -3330,16 +3330,7 @@ document.getElementById('faqModal').addEventListener('click', function(e) {
    문의하기 모달
 ───────────────────────────── */
 // ──────────────────────────────────────────────────────────────────
-// [보안] API 엔드포인트 난독화
-// Google Apps Script URL을 분할 저장 후 런타임에 조합합니다.
-// 소스를 직접 열람해도 완전한 URL이 노출되지 않습니다.
-// (근본적 해결책: 별도 백엔드 프록시 서버를 두는 것을 권장)
-// ──────────────────────────────────────────────────────────────────
-const _ep = (() => {
-  const _p = ['aHR0cHM6Ly9zY3JpcHQu', 'Z29vZ2xlLmNvbS9tYWNy', 'b3Mvcy9BS2Z5Y2J3Ul8z', 'R1dmV3VHTjJsNVFEaDJE', 'TjNScy1mdVNqZmdYcS1j', 'RVI5a1ZfT3ViZEk1MUxs', 'UVNPX0pjZVNvOTNOZC1B', 'L2V4ZWM='];
-  try { return atob(_p.join('')); } catch(e) { return ''; }
-})();
-const CONTACT_SCRIPT_URL = _ep;
+const CONTACT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwR_3GWfWuGN2l5QDh2DN3Rs-fuSjfgXq-cER9kV_OubdI51LlQSO_JceSo93Nd-A/exec';
 
 function openContactModal() {
   document.getElementById('contactModal').classList.add('active');
