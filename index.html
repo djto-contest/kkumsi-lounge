@@ -2,21 +2,6 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<!-- [보안] Content Security Policy: 허가된 출처만 리소스 로드 허용 -->
-<meta http-equiv="Content-Security-Policy"
-  content="default-src 'self';
-    script-src 'self' 'unsafe-inline';
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    font-src 'self' https://fonts.gstatic.com data:;
-    img-src 'self' data: blob:;
-    connect-src 'self' https://script.google.com;
-    frame-ancestors 'none';">
-<!-- [보안] Clickjacking 방지 -->
-<meta http-equiv="X-Frame-Options" content="DENY">
-<!-- [보안] MIME 스니핑 방지 -->
-<meta http-equiv="X-Content-Type-Options" content="nosniff">
-<!-- [보안] Referrer 정책: 외부 요청 시 URL 노출 최소화 -->
-<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=1280">
 <title>꿈씨라운지 | 2026 시민 아이디어 공모전</title>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700;800&display=swap" rel="stylesheet">
@@ -3329,7 +3314,6 @@ document.getElementById('faqModal').addEventListener('click', function(e) {
 /* ─────────────────────────────
    문의하기 모달
 ───────────────────────────── */
-// ──────────────────────────────────────────────────────────────────
 const CONTACT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwR_3GWfWuGN2l5QDh2DN3Rs-fuSjfgQaXq-cER9kV_OubdI51LlQSO_JceSo93Nd-A/exec';
 
 function openContactModal() {
@@ -3374,38 +3358,20 @@ document.getElementById('contactForm').addEventListener('submit', async function
   const btn = this.querySelector('.contact-submit-btn');
   btn.disabled = true; btn.textContent = '등록 중...';
 
-  // [보안] Rate-limit 체크
-  if (isRateLimited('contactForm', 8000)) {
-    btn.disabled = false; btn.textContent = '문의 등록하기 ✉️';
-    alert('잠시 후 다시 시도해주세요.'); return;
-  }
-
   const formData = new FormData(this);
-  const pw    = sanitizeInput(formData.get('cPassword') || '', 50);
-  const name  = sanitizeInput(formData.get('cName') || '', 50);
-  const phone = sanitizeInput(formData.get('cPhone') || '', 20);
-  const email = sanitizeInput(formData.get('cEmail') || '', 100);
-  const title = sanitizeInput(formData.get('cTitle') || '', 100);
-  const cContent = sanitizeInput(formData.get('cContent') || '', 1000);
+  const pw = formData.get('cPassword');
 
-  // [보안] 이메일·전화번호 형식 검증
-  if (email && !isValidEmail(email)) {
-    btn.disabled = false; btn.textContent = '문의 등록하기 ✉️';
-    alert('이메일 형식이 올바르지 않습니다.'); return;
-  }
-  if (phone && !isValidPhone(phone)) {
-    btn.disabled = false; btn.textContent = '문의 등록하기 ✉️';
-    alert('전화번호 형식이 올바르지 않습니다. (예: 010-1234-5678)'); return;
-  }
-
-  // [보안] Web Crypto API SHA-256 해시
-  const pwHash = await hashPassword(pw);
+  // 비밀번호 간단 해시 (실제 서비스엔 더 강한 방식 권장)
+  const pwHash = btoa(pw + '_djto2026');
 
   const data = {
     type        : 'contact',
-    contactType : sanitizeInput(formData.get('contactType') || '', 50),
-    name, phone, email, title,
-    content     : cContent,
+    contactType : formData.get('contactType'),
+    name        : formData.get('cName'),
+    phone       : formData.get('cPhone'),
+    email       : formData.get('cEmail'),
+    title       : formData.get('cTitle'),
+    content     : formData.get('cContent'),
     pwHash      : pwHash,
     reply       : '',
     submitAt    : new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })
@@ -3436,8 +3402,8 @@ async function searchInquiry() {
 
   if (!name || !pw) { errEl.textContent = '이름과 비밀번호를 모두 입력해 주세요.'; errEl.classList.add('show'); return; }
 
-  // [보안] Web Crypto API SHA-256 해시 사용
-  const pwHash = await hashPassword(pw);
+  // 관리자 여부는 서버(Apps Script)에서 검증합니다.
+  const pwHash = btoa(pw + '_djto2026');
 
   try {
     const res  = await fetch(CONTACT_SCRIPT_URL + '?action=getInquiry&name=' + encodeURIComponent(name) + '&pwHash=' + encodeURIComponent(pwHash));
@@ -3526,54 +3492,9 @@ function showInquiryDetail(json, isAdmin) {
   }
 }
 
-// ──────────────────────────────────────────────────────────────────
-// [보안] 보안 유틸리티 함수 모음
-// ──────────────────────────────────────────────────────────────────
-
-// [보안] HTML 이스케이프 강화 (XSS 방지 — 기존보다 더 많은 문자 이스케이프)
+// HTML 이스케이프
 function escHtml(str) {
-  return String(str)
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;')
-    .replace(/'/g,'&#x27;')
-    .replace(/\//g,'&#x2F;');
-}
-
-// [보안] Web Crypto API SHA-256 해시 (btoa 단순 인코딩 대체)
-async function hashPassword(pw) {
-  const _s = atob('ZGp0bzIwMjZfc2VjdXJl'); // 솔트 난독화
-  const encoder = new TextEncoder();
-  const data = encoder.encode(pw + _s);
-  const hashBuf = await crypto.subtle.digest('SHA-256', data);
-  return Array.from(new Uint8Array(hashBuf))
-    .map(b => b.toString(16).padStart(2, '0')).join('');
-}
-
-// [보안] 입력값 길이 제한
-function sanitizeInput(str, maxLen = 500) {
-  if (typeof str !== 'string') return '';
-  return str.trim().slice(0, maxLen);
-}
-
-// [보안] 이메일 형식 검증
-function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-// [보안] 전화번호 형식 검증 (한국 번호)
-function isValidPhone(phone) {
-  return /^0\d{1,2}-?\d{3,4}-?\d{4}$/.test(phone.replace(/\s/g,''));
-}
-
-// [보안] Rate-limit: 짧은 시간 내 중복 제출 방지 (기본 5초)
-const _submitTimestamps = {};
-function isRateLimited(key, limitMs = 5000) {
-  const now = Date.now();
-  if (_submitTimestamps[key] && now - _submitTimestamps[key] < limitMs) return true;
-  _submitTimestamps[key] = now;
-  return false;
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
 
@@ -3673,17 +3594,10 @@ async function loadVoicePosts() {
 }
 
 async function submitVoice() {
-  // [보안] Rate-limit 체크
-  if (isRateLimited('submitVoice', 5000)) {
-    alert('잠시 후 다시 시도해주세요. (연속 등록 방지)'); return;
-  }
-
-  const nick    = sanitizeInput(document.getElementById('voiceNick').value || '익명', 20);
-  const pw      = sanitizeInput(document.getElementById('voicePw').value, 20);
-  const content = sanitizeInput(document.getElementById('voiceContent').value, 500);
-
-  // [보안] 내용 필수 입력 + 최소 길이 검증
-  if (!content || content.length < 2) { alert('내용을 2자 이상 입력해주세요.'); return; }
+  const nick    = document.getElementById('voiceNick').value.trim() || '익명';
+  const pw      = document.getElementById('voicePw').value.trim();
+  const content = document.getElementById('voiceContent').value.trim();
+  if (!content) { alert('내용을 입력해주세요.'); return; }
 
   const btn = document.querySelector('.voice-submit-btn');
   btn.disabled = true; btn.textContent = '등록 중...';
@@ -3708,14 +3622,10 @@ async function submitVoice() {
 }
 
 async function submitComment(idx, rowIndex) {
-  // [보안] Rate-limit 체크
-  if (isRateLimited('submitComment_' + idx, 5000)) {
-    alert('잠시 후 다시 시도해주세요.'); return;
-  }
-  const nick = sanitizeInput(document.getElementById(`cmtNick-${idx}`)?.value || '익명', 20);
-  const pw   = sanitizeInput(document.getElementById(`cmtPw-${idx}`)?.value || '', 20);
-  const text = sanitizeInput(document.getElementById(`cmtText-${idx}`)?.value || '', 200);
-  if (!text || text.length < 1) { alert('댓글 내용을 입력해주세요.'); return; }
+  const nick = document.getElementById(`cmtNick-${idx}`).value.trim() || '익명';
+  const pw   = document.getElementById(`cmtPw-${idx}`)?.value.trim() || '';
+  const text = document.getElementById(`cmtText-${idx}`).value.trim();
+  if (!text) { alert('댓글 내용을 입력해주세요.'); return; }
 
   try {
     await fetch(VOICE_SCRIPT_URL, {
@@ -3919,17 +3829,11 @@ async function submitReply() {
   const btn = document.querySelector('.admin-reply-btn');
   btn.disabled = true; btn.textContent = '등록 중...';
 
-  // [보안] 관리자 비밀번호 입력 받아 서버에서 검증
-  const adminPw = document.getElementById('adminReplyPwInput')?.value?.trim() || '';
-  if (!adminPw) { btn.disabled = false; btn.textContent = '답글 등록'; alert('관리자 비밀번호를 입력하세요.'); return; }
-  const adminPwHash = await hashPassword(adminPw);
-
   const data = {
-    type         : 'reply',
-    rowIndex     : rowIndex,
-    reply        : sanitizeInput(text, 1000),
-    replyAt      : new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
-    adminPwHash  : adminPwHash
+    type     : 'reply',
+    rowIndex : rowIndex,
+    reply    : text,
+    replyAt  : new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })
   };
 
   try {
@@ -4027,35 +3931,17 @@ document.getElementById('openProposalForm').addEventListener('submit', async fun
   const btn = this.querySelector('.fm-submit-btn');
   btn.disabled = true; btn.textContent = '접수 중...';
 
-  // [보안] Rate-limit 체크
-  if (isRateLimited('openProposalForm', 10000)) {
-    btn.disabled = false; btn.textContent = '제안서 접수하기 💬';
-    alert('잠시 후 다시 시도해주세요.'); return;
-  }
-
   const formData = new FormData(this);
-  const name  = sanitizeInput(formData.get('name') || '', 50);
-  const phone = sanitizeInput(formData.get('phone') || '', 20);
-  const email = sanitizeInput(formData.get('email') || '', 100);
-
-  // [보안] 이메일·전화번호 형식 검증
-  if (email && !isValidEmail(email)) {
-    btn.disabled = false; btn.textContent = '제안서 접수하기 💬';
-    alert('이메일 형식이 올바르지 않습니다.'); return;
-  }
-  if (phone && !isValidPhone(phone)) {
-    btn.disabled = false; btn.textContent = '제안서 접수하기 💬';
-    alert('전화번호 형식이 올바르지 않습니다. (예: 010-1234-5678)'); return;
-  }
-
   const data = {
     type     : 'open_proposal',
-    name, phone, email,
-    district : sanitizeInput(formData.get('district') || '', 50),
-    category : sanitizeInput(formData.get('category') || '', 50),
-    title    : sanitizeInput(formData.get('title') || '', 150),
-    content  : sanitizeInput(formData.get('content') || '', 2000),
-    effect   : sanitizeInput(formData.get('effect') || '', 1000),
+    name     : formData.get('name'),
+    phone    : formData.get('phone'),
+    email    : formData.get('email') || '',
+    district : formData.get('district'),
+    category : formData.get('category'),
+    title    : formData.get('title'),
+    content  : formData.get('content'),
+    effect   : formData.get('effect') || '',
     submitAt : new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })
   };
 
@@ -4199,35 +4085,18 @@ document.getElementById('proposalForm').addEventListener('submit', async functio
   const loading = document.getElementById('fmLoading');
   loading.classList.add('active');
 
-  // [보안] Rate-limit 체크
-  if (isRateLimited('proposalForm', 10000)) {
-    loading.classList.remove('active');
-    alert('잠시 후 다시 시도해주세요.'); return;
-  }
-
   const formData = new FormData(this);
-  const name     = sanitizeInput(formData.get('name') || '', 50);
-  const phone    = sanitizeInput(formData.get('phone') || '', 20);
-  const email    = sanitizeInput(formData.get('email') || '', 100);
-
-  // [보안] 이메일·전화번호 형식 검증
-  if (email && !isValidEmail(email)) {
-    loading.classList.remove('active');
-    alert('이메일 형식이 올바르지 않습니다.'); return;
-  }
-  if (phone && !isValidPhone(phone)) {
-    loading.classList.remove('active');
-    alert('전화번호 형식이 올바르지 않습니다. (예: 010-1234-5678)'); return;
-  }
 
   const data = {
     type     : 'proposal',
-    name, phone, email,
-    district : sanitizeInput(formData.get('district') || '', 50),
-    category : sanitizeInput(formData.get('category') || '', 50),
-    title    : sanitizeInput(formData.get('title') || '', 150),
-    content  : sanitizeInput(formData.get('content') || '', 2000),
-    effect   : sanitizeInput(formData.get('effect') || '', 1000),
+    name     : formData.get('name'),
+    phone    : formData.get('phone'),
+    email    : formData.get('email'),
+    district : formData.get('district'),
+    category : formData.get('category'),
+    title    : formData.get('title'),
+    content  : formData.get('content'),
+    effect   : formData.get('effect') || '',
     submitAt : new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })
   };
 
